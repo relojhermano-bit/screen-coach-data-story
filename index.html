@@ -3,23 +3,21 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>我们跟练的，是科学还是流量 · 全片（导演剪辑v11）</title>
+<title>我们跟练的，是科学还是流量？——解码1.2亿人的“屏幕教练”</title>
+<meta name="description" content="第十一届中国数据新闻大赛参赛作品。基于1,477条健身短视频、57.2万行弹幕与2,794条高赞评论，审视“屏幕教练”背后的科学与流量。" />
+<meta name="theme-color" content="#f4f2ec" />
+<link rel="canonical" href="https://screen-coach.netlify.app/" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="zh_CN" />
+<meta property="og:title" content="我们跟练的，是科学还是流量？" />
+<meta property="og:description" content="解码1.2亿人的“屏幕教练”：一篇关于健身短视频、科学性与流量逻辑的数据新闻。" />
+<meta property="og:url" content="https://screen-coach.netlify.app/" />
 <!--
-  全片 · 导演剪辑v7 —— 在v6基础上，按「孙嘉璐草稿6.25」完整重构：
-  ① 主人公小A → 小刘（全程统一）；主标题落定：「我们跟练的，是科学还是流量？——解码1.2亿人的"屏幕教练"」。
-  ② 叙事重排（对齐6.25五章结构）：
-     引入(手机搜索·选了高赞那条) → 标题
-     01流量密码：5.4亿/1.2亿/291万/2.5亿/+27% 数据卡 → 1477条/1310弹幕还原选择界面 → 高频词云 → 承诺×3.5倍 → 流量竞技场 →【受伤移到本章末·第五天】小刘肌肉拉伤(诊断卡)
-     02科学被压缩：FITT-VP → 科学分中位数15分 → 89/84/81缺失 → 压缩的不只是时长 →【合并原三章】人体受伤热力图(腰2046/膝1099/颈687) → 评论区为何都是"成功"(6.7×·评论墙·幸存者偏差漏斗)
-     03看不见的手：点击前已筛选 → 科学分×互动率几乎不相关(r=0.034) → 资质倒挂(达人≈68万/分偏低·医疗康复≈34分/约1.2万) → 风险是算法逻辑的副产品 → 推荐系统替小刘按下选择
-     04多方共谋(含自查清单)：责任并不全在算法 → 平台/创作者/用户三方共谋 → 改革非一夕 → 开练前自查清单 + 人物说明
-  ③ 插图（重绘版 · 均无阴影、直接插入；资源在assets/story/）：
-     被内容淹没.png（满版 .flood，置于一章首：整屏内容 → 下滑见主角）/ 受伤代价.png（一章末·居中适中）
-     / 看不见的手.png（三章）/ 拿回主动权.png（五章·与受伤同尺寸）。引入不再放插图，直接从手机搜索开始。
-  ④ 已移除v6的受访者Jamie两处（个体差异段 / 倒挂注脚），严格只保留小刘单一人物线（对齐6.25草稿）。
-  说明：DOM仍用 #ch0–#ch5作 @scope容器；导航分段由 #ch0 + seg1–seg4决定（02章由 #ch2+#ch3两容器合成、其间不插幕间卡）。
+  第十一届中国数据新闻大赛 V11 正式提交版。
+  本仓库的 submission-v11 标签保留提交时文件状态；当前目录调整只改善存档命名与说明，
+  不改变作品正文、数据、视觉设计和交互逻辑。详见 docs/archive-note.md。
 -->
-<link rel="stylesheet" href="全片_导演剪辑_v11.css" />
+<link rel="stylesheet" href="styles/main.css" />
 </head>
 <body>
 <div class="gprogress" id="gprog"></div>
@@ -133,7 +131,7 @@
 
   <!-- ============ 被内容淹没：满版插图，整屏内容 → 下滑见主角 ============ -->
   <section class="flood">
-    <img src="assets/story/被内容淹没.png" alt="数百条视频涌入眼前，个人被内容淹没" />
+    <img src="assets/story/content-overload.png" alt="数百条视频涌入眼前，个人被内容淹没" />
   </section>
 
   <!-- ============ 总体现象：把健身房装进手机的人，有多少 ============ -->
@@ -203,7 +201,7 @@
     </div>
   </section>
 
-  <!-- ============ （v7）受伤移到本章末 · 第五天 ============ -->
+  <!-- ============ 主人公线 · 跟练第五天 ============ -->
   <section class="turn">
     <div class="wrap">
       <div class="story reveal">
@@ -215,7 +213,7 @@
     </div>
 
     <div class="story-illus reveal">
-      <img src="assets/story/受伤代价.png" alt="小刘跟练后受伤，坐在地上捂着腿" loading="lazy" />
+      <img src="assets/story/injury-cost.png" alt="小刘跟练后受伤，坐在地上捂着腿" loading="lazy" />
     </div>
 
   </section>
@@ -474,7 +472,7 @@
       <p class="prose reveal">但在她点击之前，平台已经完成了一轮筛选：哪些视频先出现，哪些视频被压到后面，往往不取决于它是否科学，而取决于它是否更容易被点击、停留和转发。</p>
     </div>
     <div class="story-illus reveal">
-      <img src="assets/story/看不见的手.png" alt="小刘以为在自己挑视频，背后是算法这只看不见的手" loading="lazy" />
+      <img src="assets/story/invisible-hand.png" alt="小刘以为在自己挑视频，背后是算法这只看不见的手" loading="lazy" />
     </div>
   </section>
 
@@ -604,7 +602,7 @@
     </div>
     <div class="story-illus reveal">
 
-      <img src="assets/story/拿回主动权.png" alt="小刘开练前对照清单逐条确认，比第一次从容" loading="lazy" />
+      <img src="assets/story/regain-control.png" alt="小刘开练前对照清单逐条确认，比第一次从容" loading="lazy" />
     </div>
   </section>
 
@@ -640,7 +638,7 @@
 </main>
 </div>
 
-<script src="scatter_R1.js"></script>
-<script src="全片_导演剪辑_v11.js"></script>
+<script src="data/science-engagement-scatter.js"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>

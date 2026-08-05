@@ -1,5 +1,4 @@
-/* 全片 · 导演剪辑 v5 —— 样式表（从 HTML 内联 <style> 拆出）
-   @scope(#ch0/#ch1/#ch2) 分章作用域 + 全局标题页/幕间卡/导航。*/
+/* V11 正式提交版样式：分章作用域、标题页、幕间卡、图表与全局导航。 */
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#f4f2ec; --bg-deep:#ece8df; --ink:#1b1a17; --ink-soft:#56524a;
     --muted:#8c877c; --line:rgba(27,26,23,.12); --accent:#c2402d;
@@ -22,7 +21,7 @@ body{background:var(--bg-deep,#ece8df);color:var(--ink,#1b1a17);overflow-x:hidde
 .chap{position:relative;overflow:visible}
 .chap .progress{display:none!important} .chap .ribbon{display:none!important}
 .gprogress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent,#c2402d);z-index:10000;transition:width .08s linear}
-/* —— v6：统一的顶部章节条（合并原 pager + chip + ribbon；分隔页滚过时压缩进此条）—— */
+/* 统一顶部章节条：合并分页、章节标签与进度状态。 */
 .chrail{position:fixed;top:0;left:0;right:0;z-index:9000;display:flex;align-items:center;justify-content:center;height:38px;padding:0 16px;background:#000;border-bottom:1px solid rgba(255,255,255,.08)}
 .chrail .rail-nav{position:absolute;left:16px;display:flex;gap:var(--space-xs);align-items:center}
 .chrail .rail-nav button{font-family:"SFMono-Regular",Menlo,monospace;font-weight:700;font-size:11px;cursor:pointer;color:rgba(255,255,255,.55);background:transparent;border:0;border-radius:999px;padding:3px 9px;transition:.16s;white-space:nowrap}
@@ -94,7 +93,7 @@ body{background:var(--bg-deep,#ece8df);color:var(--ink,#1b1a17);overflow-x:hidde
 @keyframes drip{0%{transform:translateY(-100%)}55%{transform:translateY(0)}100%{transform:translateY(100%)}}
 @keyframes cuePulse{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(5px);opacity:.4}}
 @keyframes blink{50%{opacity:0}}
-/* ===== v11 性能优化：离屏冻结 + 合成层缓存（Safari 掉帧治理，视觉不变）=====
+/* 离屏冻结 + 合成层缓存（Safari 滚动性能优化，视觉不变）
    #ch0（引入·手机搜索）滚出视口后，靠 JS 给 #ch0 加 .offscreen 类：
    ① 暂停仅装饰用的无限动画，不再持续占用合成器；
    ② 释放缩略图模糊层，省内存。在视口内则将模糊封面各自栅格化为独立层，
@@ -103,7 +102,7 @@ body{background:var(--bg-deep,#ece8df);color:var(--ink,#1b1a17);overflow-x:hidde
 #ch0.offscreen .s1-cue .dot,
 #ch0.offscreen .caret{animation-play-state:paused}
 #ch0:not(.offscreen) .vthumb::before{transform:scale(1.06) translateZ(0)}
-/* ===== v7 全局组件：主人公插图 / 待绘占位 / 数据卡（跨章复用，故置于 @scope 之外）===== */
+/* 跨章节组件：主人公插图、占位与数据卡。 */
 .story-illus{max-width:880px;margin:0 auto;padding:clamp(2px,0.6vh,8px) 16px 0}
 .selfcheck .story-illus{margin-bottom:var(--space-lg);padding-top:0} /* 图片贴近上方，拉开与下方距离 */
 section.block.selfcheck{padding-top:0} /* 完全去掉上方间距，图片紧贴上方文字 */
@@ -366,7 +365,7 @@ section.block.selfcheck{padding-top:0} /* 完全去掉上方间距，图片紧�
   
   .coverbar{width:104px;display:flex;flex-direction:column-reverse;justify-content:flex-start;
     background:#1e1e1e;border-radius:7px;overflow:hidden;
-    box-shadow:0 14px 22px rgba(0,0,0,.16)}   /* v11：drop-shadow→box-shadow，砌柱逐格插入时不再重算滤镜（实心圆角条视觉等价）*/
+    box-shadow:0 14px 22px rgba(0,0,0,.16)}   /* 使用 box-shadow 避免逐格插入时反复重算滤镜 */
   .coverbar .tile{flex:0 0 auto;width:100%;height:23px;background-size:cover;background-position:center;
     box-shadow:inset 0 -1px 0 rgba(0,0,0,.16);
     opacity:0;transform:translateY(-22px) scale(.96);
@@ -531,7 +530,7 @@ section.block.selfcheck{padding-top:0} /* 完全去掉上方间距，图片紧�
   .hammer p{font-family:var(--serif);font-weight:700;font-size:clamp(23px,2.9vw,29px);line-height:1.45;color:var(--ink)}  /* 锤句：导语级 */
   .hammer p .hl{color:var(--accent)}
 
-  /* —— v7：受伤移入本章末，引入 #ch0 的叙事卡 / 诊断卡样式 —— */
+  /* 主人公受伤段落的叙事卡与诊断卡样式。 */
   .turn{padding:6vh 0}
   .turn .wrap{max-width:760px;padding:0 24px}
   .story{position:relative;background:rgba(194,64,45,.05);border-left:3px solid var(--accent);border-radius:0;padding:22px 26px}
@@ -697,7 +696,7 @@ section.block.selfcheck{padding-top:0} /* 完全去掉上方间距，图片紧�
   .body-legend .lg i{width:11px;height:11px;border-radius:50%;background:radial-gradient(circle,#f4802e,#e84a2a)}
   .body-legend .lg b{font-family:var(--mono);color:var(--accent);font-weight:600}
 
-  /* —— v6 新增小节：个体差异（同一套方案不一定适合所有人）· 受访者 Jamie 引文卡 —— */
+  /* 历史引文卡样式；保留以避免提交版的样式回归。 */
   .voice{position:relative;background:rgba(47,111,99,.06);border-left:3px solid var(--accent-2);border-radius:0 12px 12px 0;padding:22px 26px;margin:var(--space-lg) 0}
   .voice .voice-k{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--accent-2);margin-bottom:var(--space-sm)}
   .voice p{font-family:var(--serif);font-size:18.5px;line-height:1.9;color:var(--ink);margin:0}
@@ -876,7 +875,7 @@ section.block.selfcheck{padding-top:0} /* 完全去掉上方间距，图片紧�
   .scatter .ax{stroke:var(--line);stroke-width:1}
   .scatter .axlab{fill:var(--muted);font-family:var(--mono);font-size:11px}
   .scatter .axtitle{fill:var(--ink-soft);font-family:var(--sans);font-size:12.5px;font-weight:600}
-  /* v11：淡入放到整组 .dotwrap 上（一次合成动画），865 个点不再各自过渡 */
+  /* 整组散点使用一次合成淡入，避免 865 个点分别执行过渡 */
   .scatter .dotwrap{opacity:0;transition:opacity .6s ease}
   .chart.in .scatter .dotwrap{opacity:1}
   .scatter .dot{fill:var(--accent-2);opacity:.4;cursor:pointer}    /* 原始点淡化，让“分箱平均”趋势成为主角 */
@@ -922,7 +921,7 @@ section.block.selfcheck{padding-top:0} /* 完全去掉上方间距，图片紧�
   .closing .cl-final{margin-top:var(--space-lg);font-family:var(--serif);font-weight:700;font-size:clamp(25px,4.4vw,42px);line-height:1.4;color:var(--ink)}
   .closing .cl-final .hl{color:var(--accent)}
 
-  /* —— v6 新增：Jamie 注脚署名 + （选）自查板块 —— */
+  /* 注脚署名与开练前自查板块。 */
   .quote-line .voice-by{display:block;font-family:var(--mono);font-weight:400;font-size:12px;color:var(--muted);margin-top:var(--space-xs);letter-spacing:.04em}
   .selfcheck .check{list-style:none;margin:var(--space-md) 0;padding:0;display:grid;gap:var(--space-xs)}
   .selfcheck .check li{position:relative;padding:14px 16px 14px 44px;border:none;border-bottom:1px solid var(--line);border-radius:0;background:transparent;font-size:16px;color:var(--ink-soft);line-height:1.6}
@@ -954,7 +953,7 @@ section.block.selfcheck{padding-top:0} /* 完全去掉上方间距，图片紧�
   .story p + p{margin-top:var(--space-sm)}
 }
 
-/* ===== v7 新增章节 ===== */
+/* 结尾章节。 */
 @scope (#ch5) {
 :scope{
     --bg:#f4f2ec; --bg-deep:#ece8df; --ink:#1b1a17; --ink-soft:#56524a;
@@ -1029,4 +1028,3 @@ section.block.selfcheck{padding-top:0} /* 完全去掉上方间距，图片紧�
   @media(max-width:620px){ .cy-nodes{grid-template-columns:1fr;gap:var(--space-xs)} .cy-node{border-right:none;border-bottom:1px solid var(--line);padding:16px 22px} .cy-node:last-child{border-bottom:none} }
   @media(prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} .reveal{opacity:1;transform:none} }
 }
-
