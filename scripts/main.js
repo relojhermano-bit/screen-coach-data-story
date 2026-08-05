@@ -1,8 +1,7 @@
-/* 全片 · 导演剪辑 v5 —— 脚本（从 HTML 内联 <script> 拆出）
-   ch0 手机滚动驱动 / ch1 语料·词云·对比条 / ch2 FITT·人体热力图 / 全局进度与分段导航。*/
+/* V11 正式提交版交互：手机滚动、词云与对比条、FITT、人体热力图、散点图和全局导航。 */
 /* 滚动性能：把多个 scroll 回调合并到每帧一次，避免移动端逐事件强制重排造成卡顿 */
 function rafThrottle(fn){var q=false;return function(){if(q)return;q=true;requestAnimationFrame(function(){q=false;fn();});};}
-/* v11 章节可见性门控：返回 ()=>bool。章节远离视口时用它跳过逐帧场景计算与 DOM 写入，
+/* 章节可见性门控：返回 ()=>bool。章节远离视口时跳过逐帧场景计算与 DOM 写入，
    避免离屏章节在整页滚动时持续触发布局/合成（Safari 掉帧主因）。*/
 function makeVisibilityGate(el,margin){
   var vis=true;
@@ -118,6 +117,8 @@ var __r=document.getElementById('ch0');
   ];
 
   function covUrl(i){return "assets/covers/c"+(i<10?'0':'')+i+".jpg?v=4";}
+  // --cov is consumed inside styles/main.css, so its relative URL starts one level above that stylesheet.
+  function covCssUrl(i){return "../assets/covers/c"+(i<10?'0':'')+i+".jpg?v=4";}
   var inner=document.getElementById('vlistInner');
   var nodes=[], heroNode=null;
   feed.forEach(function(it){
@@ -137,7 +138,7 @@ var __r=document.getElementById('ch0');
           '<span style="position:absolute;z-index:2;left:5px;top:5px;background:rgba(20,20,22,.6);color:#fff;font-size:10px;line-height:1;padding:2px 6px;border-radius:3px;letter-spacing:.08em">示意</span>'+
           '<span class="dur">'+it.dur+'</span></div>';
       }else{
-        var cv=(it.cov!=null)?"--cov:url('"+covUrl(it.cov)+"')":'';
+        var cv=(it.cov!=null)?"--cov:url('"+covCssUrl(it.cov)+"')":'';
         thumb='<div class="vthumb" style="'+cv+'"><span class="dur">'+it.dur+'</span></div>';
       }
       el.innerHTML=
@@ -221,7 +222,7 @@ var __r=document.getElementById('ch0');
     lp=Math.min(Math.max(lp,0),1);
     setActive(active);renderPhone(active,lp);
   }
-  /* v11：#ch0 离屏时冻结手机场景——停掉逐帧 gBCR/DOM 写入、释放 vlist 合成层、暂停装饰动画（.offscreen 类由 CSS 接管）*/
+  /* #ch0 离屏时冻结手机场景：停掉逐帧布局读取与 DOM 写入，并暂停装饰动画。 */
   var ch0Vis=true;
   if('IntersectionObserver' in window){
     var ch0io=new IntersectionObserver(function(es){
@@ -252,7 +253,7 @@ var __r=document.getElementById('ch1');
 (function(){
   var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   var progress=document.getElementById('progress__ch1');
-  var ch1Vis=makeVisibilityGate(__r);   // v11：ch1 离屏时不再逐帧读 scrollHeight（强制回流）+ 写进度条
+  var ch1Vis=makeVisibilityGate(__r);   // ch1 离屏时不再逐帧读取布局或写入进度条
   window.addEventListener('scroll',rafThrottle(function(){
     if(!ch1Vis())return;
     var h=document.documentElement.scrollHeight-window.innerHeight;
@@ -321,7 +322,7 @@ var __r=document.getElementById('ch1');
     return arr;
   }
   var cAllEl=document.getElementById('cloudAll');
-  var _lastCW=-1;   // v11：仅在词云宽度真正变化时才重排，避免移动端 Safari 滚动触发 URL 栏高度变化→resize→重跑 4800 次布局+强制回流
+  var _lastCW=-1;   // 仅在词云宽度真正变化时重排，避免移动端 Safari 反复触发布局
   function relayoutClouds(force){
     var cw=cAllEl.clientWidth;
     if(!force && cw===_lastCW) return;
@@ -349,7 +350,7 @@ var __r=document.getElementById('ch2');
 (function(){
   var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   var progress=document.getElementById('progress__ch2');
-  var ch2Vis=makeVisibilityGate(__r);   // v11：供进度条与人体热力图共用；ch2 离屏时跳过逐帧计算
+  var ch2Vis=makeVisibilityGate(__r);   // 供进度条与人体热力图共用；ch2 离屏时跳过逐帧计算
   window.addEventListener('scroll',rafThrottle(function(){
     if(!ch2Vis())return;
     var h=document.documentElement.scrollHeight-window.innerHeight;
@@ -434,7 +435,7 @@ var __r=document.getElementById('ch2');
     for(var j=0;j<bSteps.length;j++) bSteps[j].classList.toggle('active',j===active);
     highlight(bSteps[active].getAttribute('data-target'));
   }
-  /* v11：ch2 离屏时跳过逐帧的 step-body gBCR 循环（ch2Vis 已在上方定义；resize/初始仍直接跑一次，保证状态正确）*/
+  /* ch2 离屏时跳过逐帧的 step-body 布局读取；初始化和 resize 时仍会更新状态。 */
   var onBodyScrollT=rafThrottle(function(){if(ch2Vis())onBodyScroll();});
   window.addEventListener('scroll',onBodyScrollT,{passive:true});
   window.addEventListener('resize',onBodyScroll);
@@ -487,7 +488,7 @@ var __r=document.getElementById('ch2');
     o.observe(el);
   });
 
-  /* 科学评分 × 互动率散点（真实 B站样本 n=865；几乎不相关 r=0.034——真实点 + 拟合线，数据见 scatter_R1.js）*/
+  /* 科学评分 × 互动率散点（B站样本 n=865；r=0.034；数据见 data/science-engagement-scatter.js）。 */
   var sc=document.getElementById('scatter4');
   if(sc){
     var NS='http://www.w3.org/2000/svg';
@@ -510,7 +511,7 @@ var __r=document.getElementById('ch2');
     function py(v){return y0-Math.max(0,Math.min(YMAX,v))/YMAX*(y0-y1);}
     [0,20,40,60,80,100].forEach(function(s){ svg.appendChild(txt(px(s),y0+15,String(s),'axlab','middle')); });
     [0.1,0.2,0.3].forEach(function(v){ svg.appendChild(line(x0,py(v),x1,py(v),'cgrid')); svg.appendChild(txt(x0-8,py(v)+4,Math.round(v*100)+'%','axlab','end')); });
-    /* v11：865 个点整体作为一层淡入（一次合成动画），取代逐点 opacity 过渡的 865 次动画突刺。
+    /* 865 个点整体作为一层淡入，取代逐点 opacity 过渡造成的动画突刺。
        点本体恒定 opacity=.4，hover 时单点提亮仍有效。*/
     var dotwrap=el('g'); dotwrap.setAttribute('class','dotwrap');
     DATA.forEach(function(d,i){
