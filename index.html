@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>我们跟练的，是科学还是流量？——解码1.2亿人的“屏幕教练”</title>
 <meta name="description" content="第十一届中国数据新闻大赛参赛作品。基于1,477条健身短视频、57.2万行弹幕与2,794条高赞评论，审视“屏幕教练”背后的科学与流量。" />
@@ -12,29 +12,28 @@
 <meta property="og:title" content="我们跟练的，是科学还是流量？" />
 <meta property="og:description" content="解码1.2亿人的“屏幕教练”：一篇关于健身短视频、科学性与流量逻辑的数据新闻。" />
 <meta property="og:url" content="https://screen-coach.netlify.app/" />
-<!--
-  第十一届中国数据新闻大赛 V11 正式提交版。
-  本仓库的 submission-v11 标签保留提交时文件状态；当前目录调整只改善存档命名与说明，
-  不改变作品正文、数据、视觉设计和交互逻辑。详见 docs/archive-note.md。
--->
+<!-- Bilingual edition. Original submission: submission-v11. -->
 <link rel="stylesheet" href="styles/main.css" />
+<link rel="stylesheet" href="styles/bilingual.css" />
+<script>try{var l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('screen-coach-language');if(l==='en')document.documentElement.lang='en';}catch(e){}</script>
 </head>
 <body>
 <div class="gprogress" id="gprog"></div>
-<div class="chrail" id="pager">
+<div class="chrail" id="pager" aria-label="章节导航" role="navigation">
   <span class="rail-nav">
-    <button data-seg="ch0" class="active">引</button>
+    <button data-seg="ch0" class="active" data-i18n="copy.106">引</button>
     <button data-seg="seg1">01</button>
     <button data-seg="seg2">02</button>
     <button data-seg="seg3">03</button>
     <button data-seg="seg4">04</button>
   </span>
   <span class="rail-now" id="railNow"><b>引</b>引入</span>
+  <div aria-label="语言 / Language" class="language-switch" role="group"><button aria-label="切换为中文" aria-pressed="true" data-lang="zh" lang="zh-CN" type="button">中文</button><button aria-label="Switch to English" aria-pressed="false" data-lang="en" lang="en" type="button">EN</button></div>
 </div>
 
 <div id="ch0" class="chap">
 <div class="progress" id="progress__ch0"></div>
-<div class="ribbon">引入 / OPENING</div>
+<div class="ribbon" data-i18n="copy.108">引入 / OPENING</div>
 
 <main>
 
@@ -45,19 +44,19 @@
       <!-- 左：文字step（真正流动滚过）-->
       <div class="s1-steps" id="s1steps">
         <div class="s1-step" data-step="0">
-          <div class="sc">
+          <div class="sc" data-i18n="copy.000">
             小刘结束了一天的工作，躺在床上，打开手机。
             <div class="s1-cue show"><span class="dot"></span>继续向下滚动</div>
           </div>
         </div>
         <div class="s1-step" data-step="1">
-          <div class="sc">在搜索框里，ta敲下两个字。</div>
+          <div class="sc" data-i18n="copy.001">在搜索框里，ta敲下两个字。</div>
         </div>
         <div class="s1-step" data-step="2">
-          <div class="sc">几秒钟后，屏幕开始不停刷新。「7天瘦腿挑战」「暴汗燃脂跟练」「每天10分钟瘦肚子」……数百条视频涌入眼前，<b>每一条都承诺着更轻的体重、更细的腰围、更快的改变</b>。</div>
+          <div class="sc" data-i18n="copy.002">几秒钟后，屏幕开始不停刷新。「7天瘦腿挑战」「暴汗燃脂跟练」「每天10分钟瘦肚子」……数百条视频涌入眼前，<b>每一条都承诺着更轻的体重、更细的腰围、更快的改变</b>。</div>
         </div>
         <div class="s1-step" data-step="3">
-          <div class="sc"><span class="quote">最终，小刘点开了点赞最高的那一条。<br>就像很多人相信的那样——高赞的内容，总不会错。</span></div>
+          <div class="sc" data-i18n="copy.003"><span class="quote">最终，小刘点开了点赞最高的那一条。<br>就像很多人相信的那样——高赞的内容，总不会错。</span></div>
         </div>
       </div>
 
@@ -81,14 +80,14 @@
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#9499a0" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
                 <span class="q empty" id="q">搜索<span class="caret" id="caret" style="display:none"></span></span>
               </div>
-              <span class="go">搜索</span>
+              <span class="go" data-i18n="copy.109">搜索</span>
             </div>
 
             <div class="bili-tabs">
-              <span class="active">综合</span><span>番剧</span><span>直播</span><span>用户</span><span>影视</span><span>图文</span>
+              <span class="active" data-i18n="copy.110">综合</span><span data-i18n="copy.111">番剧</span><span data-i18n="copy.112">直播</span><span data-i18n="copy.113">用户</span><span data-i18n="copy.114">影视</span><span data-i18n="copy.115">图文</span>
             </div>
             <div class="bili-chips">
-              <b class="on">全部</b><b>大基数</b><b>小基数</b><b>操全身燃脂</b><b>塑形瘦身</b><b>饮食</b>
+              <b class="on" data-i18n="copy.116">全部</b><b data-i18n="copy.117">大基数</b><b data-i18n="copy.118">小基数</b><b data-i18n="copy.119">操全身燃脂</b><b data-i18n="copy.120">塑形瘦身</b><b data-i18n="copy.121">饮食</b>
             </div>
 
             <div class="vlist" id="vlist">
@@ -104,11 +103,11 @@
 
   <!-- ============ 标题页（手机结束后，直接进入）============ -->
   <section class="titlecard" id="titlecard">
-    <div class="tc-bg" aria-hidden="true">练</div>
+    <div class="tc-bg" aria-hidden="true" data-i18n="copy.122">练</div>
     <div class="tc-inner">
-      <div class="tc-kicker">一次普通的搜索之后</div>
-      <h1 class="tc-title">我们跟练的，<br>是<span class="tc-accent-science">科学</span>还是<span class="tc-accent">流量</span>？</h1>
-      <p class="tc-sub">——解码1.2亿人的<br>「<b>屏幕教练</b>」</p>
+      <div class="tc-kicker" data-i18n="copy.123">一次普通的搜索之后</div>
+      <h1 class="tc-title" data-i18n="copy.004">我们跟练的，<br>是<span class="tc-accent-science">科学</span>还是<span class="tc-accent">流量</span>？</h1>
+      <p class="tc-sub" data-i18n="copy.005">——解码1.2亿人的<br>「<b>屏幕教练</b>」</p>
     </div>
   </section>
 
@@ -118,14 +117,14 @@
 <section class="divider" id="seg1">
   <div class="dv-inner">
     <span class="dv-kicker">THE ALGORITHM</span>
-    <span class="dv-num">01</span><span class="dv-title">流量密码</span>
-    <p class="dv-claim">先看第一步——被推到最前的，是最会承诺的那一种，而不是最科学的。</p>
+    <span class="dv-num">01</span><span class="dv-title" data-i18n="copy.124">流量密码</span>
+    <p class="dv-claim" data-i18n="copy.006">先看第一步——被推到最前的，是最会承诺的那一种，而不是最科学的。</p>
   </div>
 </section>
 
 <div id="ch1" class="chap">
 <div class="progress" id="progress__ch1"></div>
-<div class="ribbon">第一章 · 流量密码 / THE ALGORITHM</div>
+<div class="ribbon" data-i18n="copy.125">第一章 · 流量密码 / THE ALGORITHM</div>
 
 <main>
 
@@ -138,9 +137,9 @@
   <section class="block">
 
     <div class="feature">
-      <p class="lede reveal" style="margin-top:3vh"><span class="big">小刘并不是一个人。</span></p>
-      <p class="prose reveal">《全民健身计划（2021–2025年）》提出，到2025年全国经常参加体育锻炼人数比例达到38.5%——按全国人口量级折算约5.4亿人。而健身的入口，正悄然从健身房转向手机。越来越多人跟着屏幕里的博主一起深蹲、跳跃、燃脂，希望用更低的成本，换一个更健康的身体。仅在B站，每天就有约291万人跟着视频打卡——相当于每分钟约2000人点开一条跟练视频。近一年，相关跟练视频的观看量已达2.5亿，人均跟练时长也比去年增长了27%。想动的人越来越多，愿意"教"你的视频，也越来越多。</p>
-      <p class="prose reveal">当人们搜索"减肥""燃脂"，最容易被看见的内容，几乎都围绕着同一个逻辑——用最短的时间，改变你的身体。</p>
+      <p class="lede reveal" style="margin-top:3vh" data-i18n="copy.007"><span class="big">小刘并不是一个人。</span></p>
+      <p class="prose reveal" data-i18n="copy.008">《全民健身计划（2021–2025年）》提出，到2025年全国经常参加体育锻炼人数比例达到38.5%——按全国人口量级折算约5.4亿人。而健身的入口，正悄然从健身房转向手机。越来越多人跟着屏幕里的博主一起深蹲、跳跃、燃脂，希望用更低的成本，换一个更健康的身体。仅在B站，每天就有约291万人跟着视频打卡——相当于每分钟约2000人点开一条跟练视频。近一年，相关跟练视频的观看量已达2.5亿，人均跟练时长也比去年增长了27%。想动的人越来越多，愿意"教"你的视频，也越来越多。</p>
+      <p class="prose reveal" data-i18n="copy.009">当人们搜索"减肥""燃脂"，最容易被看见的内容，几乎都围绕着同一个逻辑——用最短的时间，改变你的身体。</p>
     </div>
   </section>
 
@@ -149,14 +148,14 @@
     <div class="words" id="words">
       <div class="cloud reveal" id="cloudAll"><!-- JS：高频承诺词(红) + 其余少见词(灰·虚线) 同处一朵云 --></div>
       <div class="wlegend reveal">
-        <span class="lg lg-hot"><i></i>标题里被反复说的</span>
-        <span class="lg lg-cold"><i></i>几乎没人说的</span>
+        <span class="lg lg-hot" data-i18n="copy.010"><i></i>标题里被反复说的</span>
+        <span class="lg lg-cold" data-i18n="copy.011"><i></i>几乎没人说的</span>
       </div>
       <!--<p class="note reveal">“瘦腿”“见效”“暴汗”“一周”“速成”——高频词集中在身体承诺与时间诱惑，最容易吸引像小刘这样时间紧、又想要明显效果的人。而“热身”“恢复”“循序渐进”这些关于怎么练的词，几乎被淹没。</p>-->
     </div>
     <div class="feature" style="margin-top:2vh">
-      <p class="prose reveal">这些相似的高频词同时也意味着，平台上那些看似丰富多样的健身内容，其实都在共享着<span class="hl">同一套流量密码</span>：被反复强调的从来不是训练过程，而是训练结果；承诺的不是身体如何安全地改变，而是多久就能改变。</p>
-      <div class="endnote reveal">数据来源：经常锻炼人数比例38.5%（约5.4亿）引自国务院《全民健身计划（2021–2025年）》（为政策目标，非已达成统计）；B站跟练用户规模（1.2亿）、日均打卡（291万）、年观看量（2.5亿）、人均时长（+27%）引自B站《2025年B站健身跟练趋势报告》。</div>
+      <p class="prose reveal" data-i18n="copy.012">这些相似的高频词同时也意味着，平台上那些看似丰富多样的健身内容，其实都在共享着<span class="hl">同一套流量密码</span>：被反复强调的从来不是训练过程，而是训练结果；承诺的不是身体如何安全地改变，而是多久就能改变。</p>
+      <div class="endnote reveal" data-i18n="copy.126">数据来源：经常锻炼人数比例38.5%（约5.4亿）引自国务院《全民健身计划（2021–2025年）》（为政策目标，非已达成统计）；B站跟练用户规模（1.2亿）、日均打卡（291万）、年观看量（2.5亿）、人均时长（+27%）引自B站《2025年B站健身跟练趋势报告》。</div>
     </div>
   </section>
 
@@ -167,20 +166,20 @@
         <figure class="chart reveal">
           <div class="bars" id="bars">
             <div class="bar-row neutral">
-              <div class="bl"><span class="nm">普通话术标题 <small>肩背拉伸 · 放松训练</small></span><span class="vv">33,708</span></div>
+              <div class="bl" data-i18n="copy.013"><span class="nm">普通话术标题 <small>肩背拉伸 · 放松训练</small></span><span class="vv">33,708</span></div>
               <div class="track"><div class="fill" style="--w:29%"></div></div>
             </div>
             <div class="bar-row promise">
-              <div class="bl"><span class="nm">“强承诺”标题 <small>7天 · 速成 · 躺瘦 · 暴汗</small></span><span class="vv">117,949</span></div>
+              <div class="bl" data-i18n="copy.014"><span class="nm">“强承诺”标题 <small>7天 · 速成 · 躺瘦 · 暴汗</small></span><span class="vv">117,949</span></div>
               <div class="track"><div class="fill" style="--w:100%"></div></div>
             </div>
             <div class="mult">≈ 3.5×</div>
           </div>
-          <figcaption>含承诺话术标题与普通话术标题的中位播放量对比。<span class="src">数据：B站标题分类 · 中位播放量（a6；普通n=573 / 承诺n=324）</span></figcaption>
+          <figcaption data-i18n="copy.015">含承诺话术标题与普通话术标题的中位播放量对比。<span class="src">数据：B站标题分类 · 中位播放量（a6；普通n=573 / 承诺n=324）</span></figcaption>
         </figure>
         <div class="text">
-          <p class="lede reveal"><span class="big">这个判断，在数据里得到了验证。</span></p>
-          <p class="prose reveal">我们把收集到的标题分成两类：一类是“强承诺、夸张话术”（如“3天见效”“暴汗”“躺瘦”），另一类是“普通话术”（如“肩背拉伸”“放松训练”）。结果发现：含承诺话术的视频，中位播放量是普通话术视频的约3.5倍。</p>
+          <p class="lede reveal" data-i18n="copy.016"><span class="big">这个判断，在数据里得到了验证。</span></p>
+          <p class="prose reveal" data-i18n="copy.017">我们把收集到的标题分成两类：一类是“强承诺、夸张话术”（如“3天见效”“暴汗”“躺瘦”），另一类是“普通话术”（如“肩背拉伸”“放松训练”）。结果发现：含承诺话术的视频，中位播放量是普通话术视频的约3.5倍。</p>
           
         </div>
       </div>
@@ -190,14 +189,14 @@
   <!-- ============ 流量竞技场（锤句 + 收束）============ -->
   <section class="hammer">
     <div class="wrap">
-      <p class="reveal">于是，当小刘打开一条健身视频，ta跟随的，从来不是一本<span class="hl">科学训练百科</span>——</p>
+      <p class="reveal" data-i18n="copy.018">于是，当小刘打开一条健身视频，ta跟随的，从来不是一本<span class="hl">科学训练百科</span>——</p>
     </div>
   </section>
 
   <section class="block">
     <div class="feature">
-      <p class="prose reveal" style="font-size:20px">而是一个由“效果承诺”主导的流量竞技场。被播放量和点赞推到最前排的，往往并不是拥有最安全训练方案的那一条，而是<span class="hl">标题最能制造点击</span>的那一条。</p>
-      <p class="prose reveal" style="margin-top:18px">但这样被推到最前的训练，不一定适合所有人，也不一定就是科学的。</p>
+      <p class="prose reveal" style="font-size:20px" data-i18n="copy.019">而是一个由“效果承诺”主导的流量竞技场。被播放量和点赞推到最前排的，往往并不是拥有最安全训练方案的那一条，而是<span class="hl">标题最能制造点击</span>的那一条。</p>
+      <p class="prose reveal" style="margin-top:18px" data-i18n="copy.020">但这样被推到最前的训练，不一定适合所有人，也不一定就是科学的。</p>
     </div>
   </section>
 
@@ -205,10 +204,10 @@
   <section class="turn">
     <div class="wrap">
       <div class="story reveal">
-        <span class="story-k">小刘 · 跟练第五天</span>
-        <p class="story-lead">跟练的第五天，小刘的腿开始疼了起来。</p>
-        <p>起初只是酸，后来变成一种尖锐的刺痛。小刘咬着牙忍，以为这只是健身该有的“效果”，直到疼痛让ta无法正常走路，才去了医院。</p>
-        <p>医院给出的诊断是：肌肉拉伤。一次想让身体变得更好的尝试，最后却把ta送进了诊室。</p>
+        <span class="story-k" data-i18n="copy.127">小刘 · 跟练第五天</span>
+        <p class="story-lead" data-i18n="copy.021">跟练的第五天，小刘的腿开始疼了起来。</p>
+        <p data-i18n="copy.022">起初只是酸，后来变成一种尖锐的刺痛。小刘咬着牙忍，以为这只是健身该有的“效果”，直到疼痛让ta无法正常走路，才去了医院。</p>
+        <p data-i18n="copy.023">医院给出的诊断是：肌肉拉伤。一次想让身体变得更好的尝试，最后却把ta送进了诊室。</p>
       </div>
     </div>
 
@@ -221,8 +220,8 @@
   <!-- ============ 转场 → 第二章 ============ -->
   <section class="block">
     <div class="feature">
-      <p class="prose reveal">同样的故事，正在不断上演。小刘想不明白：自己明明认真挑过的视频，为什么会让自己受伤？</p>
-      <p class="prose reveal">要回答这个问题，得先弄清楚——一条<span class="hl">科学</span>的健身视频，到底该长什么样。</p>
+      <p class="prose reveal" data-i18n="copy.024">同样的故事，正在不断上演。小刘想不明白：自己明明认真挑过的视频，为什么会让自己受伤？</p>
+      <p class="prose reveal" data-i18n="copy.025">要回答这个问题，得先弄清楚——一条<span class="hl">科学</span>的健身视频，到底该长什么样。</p>
     </div>
   </section>
 
@@ -232,34 +231,34 @@
 <section class="divider" id="seg2">
   <div class="dv-inner">
     <span class="dv-kicker">THE SCIENCE</span>
-    <span class="dv-num">02</span><span class="dv-title">科学被压缩</span>
-    <p class="dv-claim">高播放，<b>并不等于高质量</b>。我们按运动处方给热门视频逐条打分，再去弹幕里，找那些喊疼的人。</p>
+    <span class="dv-num">02</span><span class="dv-title" data-i18n="copy.128">科学被压缩</span>
+    <p class="dv-claim" data-i18n="copy.026">高播放，<b>并不等于高质量</b>。我们按运动处方给热门视频逐条打分，再去弹幕里，找那些喊疼的人。</p>
   </div>
 </section>
 
 <div id="ch2" class="chap">
 <div class="progress" id="progress__ch2"></div>
-<div class="ribbon">第二章 · 科学被压缩 / THE SCIENCE</div>
+<div class="ribbon" data-i18n="copy.129">第二章 · 科学被压缩 / THE SCIENCE</div>
 
 <main>
 
   <!-- ============ ① 标准：FITT-VP（一把尺子）============ -->
   <section class="block">
     <div class="feature" style="margin-bottom:5vh">
-      <p class="lede reveal"><span class="big">怎样才算一条“科学”的健身视频？</span></p>
-      <p class="prose reveal">选择跟练的人，在判断一个视频科不科学时，几乎没有统一的标准。但事实上，早已存在一套全球公认的权威依据——美国运动医学会（ACSM）提出的FITT-VP原则，它正是运动科学与临床运动医学通用的核心处方框架。</p>
+      <p class="lede reveal" data-i18n="copy.027"><span class="big">怎样才算一条“科学”的健身视频？</span></p>
+      <p class="prose reveal" data-i18n="copy.028">选择跟练的人，在判断一个视频科不科学时，几乎没有统一的标准。但事实上，早已存在一套全球公认的权威依据——美国运动医学会（ACSM）提出的FITT-VP原则，它正是运动科学与临床运动医学通用的核心处方框架。</p>
     </div>
 
     <div class="feature">
       <div class="viz reveal">
-        <p class="viz__kicker">标准 · FITT-VP运动处方框架 <span class="tag tag--source">ACSM</span></p>
-        <p class="viz__title">一份科学的训练，至少要回答这六件事</p>
+        <p class="viz__kicker" data-i18n="copy.029">标准 · FITT-VP运动处方框架 <span class="tag tag--source">ACSM</span></p>
+        <p class="viz__title" data-i18n="copy.030">一份科学的训练，至少要回答这六件事</p>
         <div id="fittvp"></div>
       </div>
     </div>
 
     <div class="feature" style="margin-top:5vh">
-      <p class="prose reveal">于是，我们<span class="hl">以FITT-VP框架为骨架</span>、结合中国运动处方共识与WHO建议，扩展出一套包含10个维度的科学性评价体系：从目标人群、风险提示、训练强度，到热身恢复、进阶方案、动作技术……每项按0—2分计分，换算为百分制。我们建库1,477条去重视频，其中1,164条可评、不跑题，纳入最终逐条评分。</p>
+      <p class="prose reveal" data-i18n="copy.031">于是，我们<span class="hl">以FITT-VP框架为骨架</span>、结合中国运动处方共识与WHO建议，扩展出一套包含10个维度的科学性评价体系：从目标人群、风险提示、训练强度，到热身恢复、进阶方案、动作技术……每项按0—2分计分，换算为百分制。我们建库1,477条去重视频，其中1,164条可评、不跑题，纳入最终逐条评分。</p>
     </div>
   </section>
 
@@ -268,8 +267,8 @@
     <div class="score-inner reveal">
       <div class="score-num">15<span class="slash">/ 100</span></div>
       <div>
-        <div class="score-cap">样本视频（n=1,164有效分析）· 科学性评分中位数</div>
-        <p class="score-txt">把热门视频逐条打分后，中位数只有 <span class="hl">15分</span>。</p>
+        <div class="score-cap" data-i18n="copy.130">样本视频（n=1,164有效分析）· 科学性评分中位数</div>
+        <p class="score-txt" data-i18n="copy.032">把热门视频逐条打分后，中位数只有 <span class="hl">15分</span>。</p>
       </div>
     </div>
   </section>
@@ -277,19 +276,19 @@
     <!-- ============ ③ 被删掉的，是训练科学 ============ -->
   <section class="block">
     <div class="feature">
-      <p class="lede reveal"><span class="big">被删掉的，是训练科学。</span></p>
-      <p class="prose reveal" style="margin-top:10px">被最先删掉的，往往不是口号，而是科学解释。运动前热身、训练强度选择、进阶与退阶方案，本应直接关系到训练安全与效果；但在1,164条有效分析中，89% 的视频没有热身环节，84% 没有给出进阶或退阶方案，81% 没有说明训练强度。</p>
-      <p class="prose reveal" style="margin-top:18px">也就是说，许多热门健身视频呈现给用户的，并不是一个完整、科学的训练方案，而只是一个不断重复的动作序列。至于什么时候该停下来、哪些人不适合练、动作做不到该怎么办，往往被省略了。</p>
-      <p class="prose reveal" style="margin-top:18px">而这些被省略的内容，并不会因为视频没有讲，就真的不存在。相反，它们会在跟练者的身体感受中显现出来。</p>
+      <p class="lede reveal" data-i18n="copy.033"><span class="big">被删掉的，是训练科学。</span></p>
+      <p class="prose reveal" style="margin-top:10px" data-i18n="copy.034">被最先删掉的，往往不是口号，而是科学解释。运动前热身、训练强度选择、进阶与退阶方案，本应直接关系到训练安全与效果；但在1,164条有效分析中，89% 的视频没有热身环节，84% 没有给出进阶或退阶方案，81% 没有说明训练强度。</p>
+      <p class="prose reveal" style="margin-top:18px" data-i18n="copy.035">也就是说，许多热门健身视频呈现给用户的，并不是一个完整、科学的训练方案，而只是一个不断重复的动作序列。至于什么时候该停下来、哪些人不适合练、动作做不到该怎么办，往往被省略了。</p>
+      <p class="prose reveal" style="margin-top:18px" data-i18n="copy.036">而这些被省略的内容，并不会因为视频没有讲，就真的不存在。相反，它们会在跟练者的身体感受中显现出来。</p>
     </div>
   </section>
 
   <!-- ============ ⑤ 被记住的，是身体疼痛 ============ -->
   <section class="block">
     <div class="feature" style="margin-bottom:4vh">
-      <p class="lede reveal"><span class="big">被记住的，是身体疼痛。</span></p>
-      <p class="prose reveal">在1,310个B站弹幕文件、共约 <span class="hl">57.2万行弹幕</span>中，我们统计了与"疼痛"相关词的提及次数，按身体部位归类后，最常出现的是<span class="hl">腰部、膝关节和颈部</span>——这也是跟练弹幕里疼痛被提及最多的几个部位。</p>
-      <p class="prose reveal" style="margin-top:14px">换句话说，短视频里被跳过的热身、强度和适应性说明，最终可能以疼痛和损伤的形式，<span class="hl">被身体重新"补上"</span>。</p>
+      <p class="lede reveal" data-i18n="copy.037"><span class="big">被记住的，是身体疼痛。</span></p>
+      <p class="prose reveal" data-i18n="copy.038">在1,310个B站弹幕文件、共约 <span class="hl">57.2万行弹幕</span>中，我们统计了与"疼痛"相关词的提及次数，按身体部位归类后，最常出现的是<span class="hl">腰部、膝关节和颈部</span>——这也是跟练弹幕里疼痛被提及最多的几个部位。</p>
+      <p class="prose reveal" style="margin-top:14px" data-i18n="copy.039">换句话说，短视频里被跳过的热身、强度和适应性说明，最终可能以疼痛和损伤的形式，<span class="hl">被身体重新"补上"</span>。</p>
     </div>
 
     <div class="scrolly-body" id="scrollyBody">
@@ -310,25 +309,25 @@
       <div class="steps-body" id="stepsBody">
         <div class="step-body" data-target="lower_back">
           <div class="card">
-            <div class="lead">最常喊疼的，是<span class="hl">腰</span>。</div>
-            <span class="big">2,046<small>次弹幕提及</small></span>
-            <p>卷腹、平板、深蹲——那些想练出腹肌和线条的动作，最先伤到的常常不是肚子，而是腰。它是所有部位里被提到最多的。</p>
+            <div class="lead" data-i18n="copy.040">最常喊疼的，是<span class="hl">腰</span>。</div>
+            <span class="big">2,046<small data-i18n="copy.131">次弹幕提及</small></span>
+            <p data-i18n="copy.041">卷腹、平板、深蹲——那些想练出腹肌和线条的动作，最先伤到的常常不是肚子，而是腰。它是所有部位里被提到最多的。</p>
           </div>
         </div>
 
         <div class="step-body" data-target="knee">
           <div class="card">
-            <div class="lead">紧接着，是<span class="hl">膝盖</span>。</div>
-            <span class="big">1,099<small>次弹幕提及</small></span>
-            <p>哪怕视频标着“无跳跃 / 膝友好”，“跟练几天膝盖就疼”依然反复出现。</p>
+            <div class="lead" data-i18n="copy.042">紧接着，是<span class="hl">膝盖</span>。</div>
+            <span class="big">1,099<small data-i18n="copy.131">次弹幕提及</small></span>
+            <p data-i18n="copy.043">哪怕视频标着“无跳跃 / 膝友好”，“跟练几天膝盖就疼”依然反复出现。</p>
           </div>
         </div>
 
         <div class="step-body" data-target="neckshoulder">
           <div class="card">
-            <div class="lead">第三处，是<span class="hl">颈</span>。</div>
-            <span class="big">687<small>次弹幕提及</small></span>
-            <p>本想靠跟练放松久坐一天的酸痛，可姿势一旦不对，练完反而更僵、更紧。</p>
+            <div class="lead" data-i18n="copy.044">第三处，是<span class="hl">颈</span>。</div>
+            <span class="big">687<small data-i18n="copy.131">次弹幕提及</small></span>
+            <p data-i18n="copy.045">本想靠跟练放松久坐一天的酸痛，可姿势一旦不对，练完反而更僵、更紧。</p>
           </div>
         </div>
 
@@ -336,9 +335,9 @@
 
     <div class="feature" style="margin-top:4vh">
       <div class="body-legend reveal">
-        <span class="lg"><i></i>腰2,046</span>
-        <span class="lg"><i></i>膝盖1,099</span>
-        <span class="lg"><i></i>颈687</span>
+        <span class="lg" data-i18n="copy.046"><i></i>腰2,046</span>
+        <span class="lg" data-i18n="copy.047"><i></i>膝盖1,099</span>
+        <span class="lg" data-i18n="copy.048"><i></i>颈687</span>
       </div>
     </div>
   </section>
@@ -349,15 +348,15 @@
 <!-- ============ 02章下半（合并原「看不见的疼痛」，不另插幕间卡）============ -->
 <div id="ch3" class="chap">
 <div class="progress" id="progress__ch3"></div>
-<div class="ribbon">第二章（续） · 看不见的疼痛 / THE UNSEEN</div>
+<div class="ribbon" data-i18n="copy.132">第二章（续） · 看不见的疼痛 / THE UNSEEN</div>
 
 <main>
 
   <!-- 过渡：受伤的人去了哪里 -->
   <section class="block">
     <div class="feature">
-      <p class="lede reveal"><span class="big">如果疼痛如此普遍，为什么评论区几乎只剩“成功”？</span></p>
-      <p class="prose reveal">如果小刘在跟练前，先看到那些受伤反馈，或许就不会点开视频。可现实是，评论区最显眼的位置，往往被"瘦了""有效""坚持打卡"占据；而"膝盖疼了""腰酸了""肩颈更僵了"这样的声音，要么数量更少，要么被压在更靠后的位置。</p>
+      <p class="lede reveal" data-i18n="copy.049"><span class="big">如果疼痛如此普遍，为什么评论区几乎只剩“成功”？</span></p>
+      <p class="prose reveal" data-i18n="copy.050">如果小刘在跟练前，先看到那些受伤反馈，或许就不会点开视频。可现实是，评论区最显眼的位置，往往被"瘦了""有效""坚持打卡"占据；而"膝盖疼了""腰酸了""肩颈更僵了"这样的声音，要么数量更少，要么被压在更靠后的位置。</p>
     </div>
   </section>
 
@@ -367,16 +366,16 @@
       <figure class="chart reveal">
         <div class="bars">
           <div class="bar-row pos">
-            <div class="bl"><span class="nm">正向词命中 <small>瘦了 · 有效 · 打卡</small></span><span class="vv">122,980</span></div>
+            <div class="bl" data-i18n="copy.051"><span class="nm">正向词命中 <small>瘦了 · 有效 · 打卡</small></span><span class="vv">122,980</span></div>
             <div class="track"><div class="fill" style="--w:100%"></div></div>
           </div>
           <div class="bar-row hurt">
-            <div class="bl"><span class="nm">疼痛/受伤词命中 <small>疼痛 · 不适</small></span><span class="vv">18,318</span></div>
+            <div class="bl" data-i18n="copy.052"><span class="nm">疼痛/受伤词命中 <small>疼痛 · 不适</small></span><span class="vv">18,318</span></div>
             <div class="track"><div class="fill" style="--w:14.9%"></div></div>
           </div>
           <div class="mult">6.7×<!--<small>正向声量约为受伤声量的6.7倍</small>--></div>
         </div>
-        <figcaption>B站弹幕关键词命中次数（基于1,310个文件、约57.2万行弹幕）：正向词122,980次vs疼痛/受伤词18,318次。<span class="src">数据：A5词命中（R3）</span></figcaption>
+        <figcaption data-i18n="copy.053">B站弹幕关键词命中次数（基于1,310个文件、约57.2万行弹幕）：正向词122,980次vs疼痛/受伤词18,318次。<span class="src">数据：A5词命中（R3）</span></figcaption>
       </figure>
     </div>
   </section>
@@ -384,7 +383,7 @@
   <!-- ② 过渡：受伤者提前离开 -->
   <section class="block">
     <div class="feature">
-      <p class="prose reveal">但这并不意味着受伤不存在。很多受伤者，早在留言之前就离开了。一次跟练会经历层层筛选：有人没有开始，有人练几天就放弃，也有人因为疼痛中断。最终还能留在评论区分享体验的，往往是坚持下来、效果较好的人。</p>
+      <p class="prose reveal" data-i18n="copy.054">但这并不意味着受伤不存在。很多受伤者，早在留言之前就离开了。一次跟练会经历层层筛选：有人没有开始，有人练几天就放弃，也有人因为疼痛中断。最终还能留在评论区分享体验的，往往是坚持下来、效果较好的人。</p>
     </div>
   </section>
 
@@ -414,31 +413,31 @@
           <text x="180" y="432">13</text>
         </g>
         <g class="fn-labels">
-          <text class="t" x="430" y="60">进入视频的潜在跟练者</text>
-          <text class="s" x="430" y="79">刷到或被推荐看到视频</text>
-          <text class="t" x="430" y="152">实际开始跟练</text>
-          <text class="s" x="430" y="171">点击播放，并跟随动作开始练习</text>
-          <text class="t" x="430" y="244">坚持一周以上</text>
-          <text class="s" x="430" y="263">完成 ≥ 7 天的跟练</text>
-          <text class="t" x="430" y="336">持续打卡</text>
-          <text class="s" x="430" y="355">形成稳定的练习习惯</text>
-          <text class="t" x="430" y="428">分享反馈</text>
-          <text class="s" x="430" y="447">在评论区分享跟练体验</text>
+          <text class="t" x="430" y="60" data-i18n="copy.133">进入视频的潜在跟练者</text>
+          <text class="s" x="430" y="79" data-i18n="copy.134">刷到或被推荐看到视频</text>
+          <text class="t" x="430" y="152" data-i18n="copy.135">实际开始跟练</text>
+          <text class="s" x="430" y="171" data-i18n="copy.136">点击播放，并跟随动作开始练习</text>
+          <text class="t" x="430" y="244" data-i18n="copy.137">坚持一周以上</text>
+          <text class="s" x="430" y="263" data-i18n="copy.138">完成 ≥ 7 天的跟练</text>
+          <text class="t" x="430" y="336" data-i18n="copy.139">持续打卡</text>
+          <text class="s" x="430" y="355" data-i18n="copy.140">形成稳定的练习习惯</text>
+          <text class="t" x="430" y="428" data-i18n="copy.141">分享反馈</text>
+          <text class="s" x="430" y="447" data-i18n="copy.142">在评论区分享跟练体验</text>
         </g>
       </svg>
-      <figcaption class="ff-cap">跟练者沿传播链条的逐层流失（每100名潜在跟练者的示意比例）。<span class="src">示意估算 · 非实测留存</span></figcaption>
+      <figcaption class="ff-cap" data-i18n="copy.055">跟练者沿传播链条的逐层流失（每100名潜在跟练者的示意比例）。<span class="src">示意估算 · 非实测留存</span></figcaption>
     </figure>
     <div class="feature">
-      <p class="prose reveal">这就是幸存者偏差：我们看见的，只是"留下来的人"说的话。于是后来者点进同一个视频，看到的像是一个由成功案例组成的世界。<span class="hl">风险并没有消失，只是被成功叙事盖住了</span>。</p>
+      <p class="prose reveal" data-i18n="copy.056">这就是幸存者偏差：我们看见的，只是"留下来的人"说的话。于是后来者点进同一个视频，看到的像是一个由成功案例组成的世界。<span class="hl">风险并没有消失，只是被成功叙事盖住了</span>。</p>
     </div>
   </section>
 
   <!-- 转场 → 第三章 -->
   <section class="block">
     <div class="feature">
-      <p class="prose reveal">风险一直都在，只是被看不见。那么，既然风险从未离开，是什么力量，让这些不科学的内容不断被更多人看见？</p>
-      <p class="prose reveal">把镜头转向那只“看不见的手”——推荐算法。</p>
-      <div class="endnote reveal">本章数据：B站弹幕关键词命中——正向122,980次vs疼痛/受伤18,318次（≈6.7×，基于57.2万行弹幕）；受伤部位按弹幕共现频次计腰2,046 / 膝1,099 / 颈687（为本项目弹幕观察，非医学统计）。完整口径见文末<b style="color:var(--ink-soft)">《方法与数据说明》</b>。</div>
+      <p class="prose reveal" data-i18n="copy.057">风险一直都在，只是被看不见。那么，既然风险从未离开，是什么力量，让这些不科学的内容不断被更多人看见？</p>
+      <p class="prose reveal" data-i18n="copy.058">把镜头转向那只“看不见的手”——推荐算法。</p>
+      <div class="endnote reveal" data-i18n="copy.170">本章数据：B站弹幕关键词命中——正向122,980次vs疼痛/受伤18,318次（≈6.7×，基于57.2万行弹幕）；受伤部位按弹幕共现频次计腰2,046 / 膝1,099 / 颈687（为本项目弹幕观察，非医学统计）。完整口径见文末<b style="color:var(--ink-soft)">《方法与数据说明》</b>。</div>
     </div>
   </section>
 
@@ -448,73 +447,73 @@
 <section class="divider" id="seg3">
   <div class="dv-inner">
     <span class="dv-kicker">THE INVISIBLE HAND</span>
-    <span class="dv-num">03</span><span class="dv-title">看不见的手</span>
-    <p class="dv-claim">在你点击之前，一轮筛选已经发生——决定的不是科学，而是传播。</p>
+    <span class="dv-num">03</span><span class="dv-title" data-i18n="copy.144">看不见的手</span>
+    <p class="dv-claim" data-i18n="copy.059">在你点击之前，一轮筛选已经发生——决定的不是科学，而是传播。</p>
   </div>
 </section>
 
 <div id="ch4" class="chap">
 <div class="progress" id="progress__ch4"></div>
-<div class="ribbon">第三章 · 看不见的手 / THE INVISIBLE HAND</div>
+<div class="ribbon" data-i18n="copy.145">第三章 · 看不见的手 / THE INVISIBLE HAND</div>
 
 <main>
 
   <!-- ① 点击前，筛选已发生 -->
   <section class="block">
     <div class="feature">
-      <p class="lede reveal"><span class="big">小刘以为自己是在挑选健身视频。</span></p>
+      <p class="lede reveal" data-i18n="copy.060"><span class="big">小刘以为自己是在挑选健身视频。</span></p>
       <div class="story reveal" style="margin:18px 0">
-        <span class="story-k">小刘 · 点击之前</span>
-        <p class="story-lead">受伤之前，小刘并不是随手点开一条视频。</p>
-        <p>ta先看标题：有没有“新手友好”“无跳跃”“快速见效”；又看播放量和点赞数，确认这条视频是不是很多人都在练。评论区里，“瘦了”“有效”“坚持打卡”的留言不断往下刷，几乎每一条都在告诉ta：这条视频值得相信。</p>
-        <p>于是，小刘点下了播放键。</p>
+        <span class="story-k" data-i18n="copy.146">小刘 · 点击之前</span>
+        <p class="story-lead" data-i18n="copy.061">受伤之前，小刘并不是随手点开一条视频。</p>
+        <p data-i18n="copy.062">ta先看标题：有没有“新手友好”“无跳跃”“快速见效”；又看播放量和点赞数，确认这条视频是不是很多人都在练。评论区里，“瘦了”“有效”“坚持打卡”的留言不断往下刷，几乎每一条都在告诉ta：这条视频值得相信。</p>
+        <p data-i18n="copy.063">于是，小刘点下了播放键。</p>
       </div>
-      <p class="prose reveal">但在她点击之前，平台已经完成了一轮筛选：哪些视频先出现，哪些视频被压到后面，往往不取决于它是否科学，而取决于它是否更容易被点击、停留和转发。</p>
+      <p class="prose reveal" data-i18n="copy.064">但在她点击之前，平台已经完成了一轮筛选：哪些视频先出现，哪些视频被压到后面，往往不取决于它是否科学，而取决于它是否更容易被点击、停留和转发。</p>
     </div>
     <div class="story-illus reveal">
-      <img src="assets/story/invisible-hand.png" alt="小刘以为在自己挑视频，背后是算法这只看不见的手" loading="lazy" />
+      <img src="assets/story/invisible-hand.png" alt="小刘以为在自己挑视频，背后是算法这只看不见的手" loading="lazy"  class="invisible-hand-illustration"/>
     </div>
   </section>
 
 <!-- ② 科学分 × 互动率：几乎不相关 -->
   <section class="block wall-deep">
     <div class="feature">
-      <p class="lede reveal"><span class="big">并不是“科学的，没人爱看”。</span></p>
-      <p class="prose reveal">在B站可计算播放量的865条样本中，科学评分与互动率<span class="hl">几乎不相关</span>（Pearson r=0.034，p=0.317，统计上不显著）。也就是说，科学性的高低并不会明显改变一条视频被点赞、收藏、评论的概率——更科学不会更没人看，但也谈不上更受欢迎。真正的差异，更可能出现在内容获得曝光的前一环。</p>
+      <p class="lede reveal" data-i18n="copy.065"><span class="big">并不是“科学的，没人爱看”。</span></p>
+      <p class="prose reveal" data-i18n="copy.066">在B站可计算播放量的865条样本中，科学评分与互动率<span class="hl">几乎不相关</span>（Pearson r=0.034，p=0.317，统计上不显著）。也就是说，科学性的高低并不会明显改变一条视频被点赞、收藏、评论的概率——更科学不会更没人看，但也谈不上更受欢迎。真正的差异，更可能出现在内容获得曝光的前一环。</p>
       <figure class="chart reveal">
         <div class="scatter" id="scatter4" aria-label="科学评分与互动率散点图"><!-- JS注入真实散点 + 拟合线 --></div>
-        <figcaption>每个点为一条B站样本视频（n=865，仅含可计算播放量者）：横轴科学评分，纵轴互动率＝(点赞+收藏+评论)/播放量（不含分享，少数离群点截顶30%）；拟合线近乎水平（r=0.034，p=0.317，不显著）。<span class="src">数据：B站样本逐条计算（R1/R2）</span></figcaption>
+        <figcaption data-i18n="copy.067">每个点为一条B站样本视频（n=865，仅含可计算播放量者）：横轴科学评分，纵轴互动率＝(点赞+收藏+评论)/播放量（不含分享，少数离群点截顶30%）；拟合线近乎水平（r=0.034，p=0.317，不显著）。<span class="src">数据：B站样本逐条计算（R1/R2）</span></figcaption>
       </figure>
-      <p class="prose reveal">真正的问题，可能不在于科学内容没人看，而在于它们更难进入用户最先看到的那一层结果。对于普通用户来说，排在前面的视频，往往已经替他们划定了选择范围。</p>
+      <p class="prose reveal" data-i18n="copy.068">真正的问题，可能不在于科学内容没人看，而在于它们更难进入用户最先看到的那一层结果。对于普通用户来说，排在前面的视频，往往已经替他们划定了选择范围。</p>
     </div>
   </section>
 
   <!-- ③ 博主资质倒挂 -->
   <section class="block">
     <div class="feature">
-      <p class="prose reveal">我们按账号资质将头部博主分为五类，并比较它们的流量与科学评分，发现了一种明显错位：</p>
+      <p class="prose reveal" data-i18n="copy.069">我们按账号资质将头部博主分为五类，并比较它们的流量与科学评分，发现了一种明显错位：</p>
       <figure class="chart reveal">
         <div class="combo" id="combo4" aria-label="按博主资质：B站中位播放量(柱)与平均科学分(线)"><!-- JS注入组合图 --></div>
-        <figcaption>柱＝B站中位播放量（左轴），线＝平均科学分（右轴）。健身达人中位播放量近70万，科学分却明显偏低；最严谨的医疗康复类科学分最高（约34），中位播放量却最低、仅约1.2万。<span class="src">数据：按账号资质五类 · B站中位播放量与平均科学分（a2；n=185/228/4/1,000/58）</span></figcaption>
+        <figcaption data-i18n="copy.070">柱＝B站中位播放量（左轴），线＝平均科学分（右轴）。健身达人中位播放量近70万，科学分却明显偏低；最严谨的医疗康复类科学分最高（约34），中位播放量却最低、仅约1.2万。<span class="src">数据：按账号资质五类 · B站中位播放量与平均科学分（a2；n=185/228/4/1,000/58）</span></figcaption>
       </figure>
-      <p class="prose reveal">健身达人型博主，流量碾压全场，科学分却明显偏低；而那些更懂运动安全的医疗康复类博主，科学分最高、约34分，播放量却最低，只有约1.2万。<span class="hl">最懂得合理、安全健身的人，声音在互联网上被削弱；而那些最会喊口号的人，被推到了每个人面前。</span></p>
+      <p class="prose reveal" data-i18n="copy.071">健身达人型博主，流量碾压全场，科学分却明显偏低；而那些更懂运动安全的医疗康复类博主，科学分最高、约34分，播放量却最低，只有约1.2万。<span class="hl">最懂得合理、安全健身的人，声音在互联网上被削弱；而那些最会喊口号的人，被推到了每个人面前。</span></p>
     </div>
   </section>
 
   <!-- ④ 算法不是元凶，而是逻辑的副产品 -->
   <section class="block">
     <div class="feature">
-      <p class="prose reveal" style="font-size:20px">但这并不意味着算法在“主动推荐危险内容”。它揭示的是另一件事：当算法以 “互动最大化” 为唯一指令运转时，就在客观上，为那些更刺激、更具承诺性的视频，打开了一条传播的绿色通道。</p>
-      <p class="reveal" style="margin-top:26px"><span class="quote-line">风险不是算法的目标，却是这套逻辑下，难以避免的副产品。</span></p>
+      <p class="prose reveal" style="font-size:20px" data-i18n="copy.072">但这并不意味着算法在“主动推荐危险内容”。它揭示的是另一件事：当算法以 “互动最大化” 为唯一指令运转时，就在客观上，为那些更刺激、更具承诺性的视频，打开了一条传播的绿色通道。</p>
+      <p class="reveal" style="margin-top:26px" data-i18n="copy.073"><span class="quote-line">风险不是算法的目标，却是这套逻辑下，难以避免的副产品。</span></p>
     </div>
   </section>
 
   <!-- 收束：呼应小刘 -->
   <section class="block">
     <div class="feature">
-      <p class="prose reveal">当数亿人把手机当作健身教练，真正在发号施令的，是一套以点击量为最高指令的推荐系统。</p>
-      <p class="prose reveal">小刘在深夜努力地挑选着自己觉得靠谱的那条视频，却没想到，搜索的界面早已被系统筛过一轮——ta跟着“精心挑选”的视频练，最终受了伤。</p>
-      <div class="endnote reveal">本章发现：科学评分 × 互动率几乎不相关（B站865条，r=0.034，p=0.317，不显著）；按资质五类，“健身达人”中位播放最高但科学分偏低，“医疗康复”科学分最高（约34）、中位播放最低（约1.2万）。指标定义与口径见文末<b style="color:var(--ink-soft)">《方法与数据说明》</b>。</div>
+      <p class="prose reveal" data-i18n="copy.074">当数亿人把手机当作健身教练，真正在发号施令的，是一套以点击量为最高指令的推荐系统。</p>
+      <p class="prose reveal" data-i18n="copy.075">小刘在深夜努力地挑选着自己觉得靠谱的那条视频，却没想到，搜索的界面早已被系统筛过一轮——ta跟着“精心挑选”的视频练，最终受了伤。</p>
+      <div class="endnote reveal" data-i18n="copy.171">本章发现：科学评分 × 互动率几乎不相关（B站865条，r=0.034，p=0.317，不显著）；按资质五类，“健身达人”中位播放最高但科学分偏低，“医疗康复”科学分最高（约34）、中位播放最低（约1.2万）。指标定义与口径见文末<b style="color:var(--ink-soft)">《方法与数据说明》</b>。</div>
     </div>
   </section>
 
@@ -524,22 +523,22 @@
 <section class="divider" id="seg4">
   <div class="dv-inner">
     <span class="dv-kicker">THE COMPLICITY</span>
-    <span class="dv-num">04</span><span class="dv-title">多方共谋</span>
-    <p class="dv-claim">如果风险源于算法，那责任就全在算法吗？答案，或许没那么简单。</p>
+    <span class="dv-num">04</span><span class="dv-title" data-i18n="copy.147">多方共谋</span>
+    <p class="dv-claim" data-i18n="copy.076">如果风险源于算法，那责任就全在算法吗？答案，或许没那么简单。</p>
   </div>
 </section>
 
 <div id="ch5" class="chap">
 <div class="progress" id="progress__ch5"></div>
-<div class="ribbon">第四章 · 多方共谋 / THE COMPLICITY</div>
+<div class="ribbon" data-i18n="copy.148">第四章 · 多方共谋 / THE COMPLICITY</div>
 
 <main>
 
   <!-- ① 责任并不全在算法 -->
   <section class="block">
     <div class="feature">
-      <p class="lede reveal"><span class="big">如果说风险源于算法，那么责任，是否也全在算法？</span></p>
-      <p class="prose reveal">答案或许没有那么简单。在整个健身短视频的生态里，平台、创作者和用户，其实都参与了这套传播逻辑的形成——只是各自的需求不同。</p>
+      <p class="lede reveal" data-i18n="copy.077"><span class="big">如果说风险源于算法，那么责任，是否也全在算法？</span></p>
+      <p class="prose reveal" data-i18n="copy.078">答案或许没有那么简单。在整个健身短视频的生态里，平台、创作者和用户，其实都参与了这套传播逻辑的形成——只是各自的需求不同。</p>
     </div>
   </section>
 
@@ -549,22 +548,22 @@
       <div class="conspiracy reveal">
         <div class="cy-nodes">
           <div class="cy-node">
-            <span class="cy-k">用户</span>
-            <span class="cy-want">更短时间，更多成果</span>
+            <span class="cy-k" data-i18n="copy.149">用户</span>
+            <span class="cy-want" data-i18n="copy.150">更短时间，更多成果</span>
           </div>
           <div class="cy-node">
-            <span class="cy-k">创作者</span>
-            <span class="cy-want">获得更多曝光</span>
+            <span class="cy-k" data-i18n="copy.151">创作者</span>
+            <span class="cy-want" data-i18n="copy.152">获得更多曝光</span>
           </div>
           <div class="cy-node">
-            <span class="cy-k">平台</span>
-            <span class="cy-want">更高的互动率</span>
+            <span class="cy-k" data-i18n="copy.153">平台</span>
+            <span class="cy-want" data-i18n="copy.154">更高的互动率</span>
           </div>
         </div>
         <div class="cy-core">
-          <span class="cy-core-lab">三方需求不同，但共同强化了同一种传播逻辑：</span>
-          <span class="cy-core-main">「速成 · 暴汗 · 七天见效」</span>
-          <span class="cy-core-sub">高承诺的内容，不断扩散</span>
+          <span class="cy-core-lab" data-i18n="copy.155">三方需求不同，但共同强化了同一种传播逻辑：</span>
+          <span class="cy-core-main" data-i18n="copy.156">「速成 · 暴汗 · 七天见效」</span>
+          <span class="cy-core-sub" data-i18n="copy.157">高承诺的内容，不断扩散</span>
         </div>
       </div>
     </div>
@@ -573,31 +572,31 @@
   <!-- ③ 风险是链条的共同作用 -->
   <section class="block">
     <div class="feature">
-      <p class="prose reveal" style="font-size:20px">从这个意义上说，风险并不是某一个环节的错误，而是整个传播链条共同作用的结果。</p>
-      <p class="reveal" style="margin-top:26px"><span class="quote-line">算法只是把这股合力，放大成了你滑动时看到的样子。</span></p>
+      <p class="prose reveal" style="font-size:20px" data-i18n="copy.079">从这个意义上说，风险并不是某一个环节的错误，而是整个传播链条共同作用的结果。</p>
+      <p class="reveal" style="margin-top:26px" data-i18n="copy.080"><span class="quote-line">算法只是把这股合力，放大成了你滑动时看到的样子。</span></p>
     </div>
   </section>
 
   <!-- ④ 改革非一夕 → 先从自身做起 -->
   <section class="block">
     <div class="feature">
-      <p class="prose reveal">但改变并非一夕之间：算法的迭代需要时间，创作者的内容转型需要激励，而用户对“速成”的渴望，也不会在一夜之间消失。</p>
-      <p class="prose reveal">在外界环境改变之前，或许我们可以先从自身做起——让每一个普通人，在点下“开始跟练”之前，多一次保护自己的机会，让像小刘一样因健身而受伤的人，越来越少。</p>
-      <p class="prose reveal">改变很慢，但保护自己可以从现在开始。在平台和算法改变之前，先给自己，留一道关。</p>
+      <p class="prose reveal" data-i18n="copy.081">但改变并非一夕之间：算法的迭代需要时间，创作者的内容转型需要激励，而用户对“速成”的渴望，也不会在一夜之间消失。</p>
+      <p class="prose reveal" data-i18n="copy.082">在外界环境改变之前，或许我们可以先从自身做起——让每一个普通人，在点下“开始跟练”之前，多一次保护自己的机会，让像小刘一样因健身而受伤的人，越来越少。</p>
+      <p class="prose reveal" data-i18n="copy.083">改变很慢，但保护自己可以从现在开始。在平台和算法改变之前，先给自己，留一道关。</p>
     </div>
   </section>
 
   <!-- 开练前自查（原第五章，合并入第四章） -->
   <section class="block selfcheck">
     <div class="feature">
-      <p class="lede reveal"><span class="big">开练前，先问这条视频五个问题。</span></p>
-      <p class="prose reveal">基于这次研究的发现，我们把最常被省略的科学要素，整理成一份开练前自查。如果你常跟的那条视频大多答不上来，它也许只是“最会承诺”，而未必“最适合你”。</p>
+      <p class="lede reveal" data-i18n="copy.084"><span class="big">开练前，先问这条视频五个问题。</span></p>
+      <p class="prose reveal" data-i18n="copy.085">基于这次研究的发现，我们把最常被省略的科学要素，整理成一份开练前自查。如果你常跟的那条视频大多答不上来，它也许只是“最会承诺”，而未必“最适合你”。</p>
       <ul class="check reveal" id="checklist">
-        <li data-checked="false" onclick="this.dataset.checked=this.dataset.checked==='true'?'false':'true'">有没有讲热身和放松？</li>
-        <li data-checked="false" onclick="this.dataset.checked=this.dataset.checked==='true'?'false':'true'">有没有说明训练强度、累了该怎么调？</li>
-        <li data-checked="false" onclick="this.dataset.checked=this.dataset.checked==='true'?'false':'true'">有没有进阶／退阶，让不同基础的人各取所需？</li>
-        <li data-checked="false" onclick="this.dataset.checked=this.dataset.checked==='true'?'false':'true'">有没有指出哪些人不适合（旧伤、术后、孕期……）？</li>
-        <li data-checked="false" onclick="this.dataset.checked=this.dataset.checked==='true'?'false':'true'">动作做不到时，有没有替代方案和风险提示？</li>
+        <li data-checked="false" aria-checked="false" data-i18n="copy.086" role="checkbox" tabindex="0">有没有讲热身和放松？</li>
+        <li data-checked="false" aria-checked="false" data-i18n="copy.087" role="checkbox" tabindex="0">有没有说明训练强度、累了该怎么调？</li>
+        <li data-checked="false" aria-checked="false" data-i18n="copy.088" role="checkbox" tabindex="0">有没有进阶／退阶，让不同基础的人各取所需？</li>
+        <li data-checked="false" aria-checked="false" data-i18n="copy.089" role="checkbox" tabindex="0">有没有指出哪些人不适合（旧伤、术后、孕期……）？</li>
+        <li data-checked="false" aria-checked="false" data-i18n="copy.090" role="checkbox" tabindex="0">动作做不到时，有没有替代方案和风险提示？</li>
       </ul>
     </div>
     <div class="story-illus reveal">
@@ -608,30 +607,30 @@
 
   <section class="closing">
     <div class="wrap">
-      <p class="cl-lead reveal">小刘以为，是自己选择了那条视频。</p>
-      <p class="cl-final reveal">但其实，是那套以点击量为指令的系统，<br><span class="hl">替ta按下了选择。</span><br>而把选择权拿回来的第一步，<br>是在开始之前，多问自己一句：<br>这一次，我跟练的，是科学，还是流量？</p>
-      <div class="endnote reveal">人物说明：文中「小刘」为综合多个真实跟练案例的<b style="color:var(--ink-soft)">典型化人物</b>，用于串联叙事；其经历（跟练第五天肌肉拉伤等）取材于真实案例与诊断情形，姓名为化名。开篇信息流中被选中、并在叙事里致其受伤的视频，同为<b style="color:var(--ink-soft)">典型化呈现</b>，已隐去真实账号与封面，不指向任何具体视频或博主。完整方法、来源与局限见文末《方法与数据说明》。</div>
+      <p class="cl-lead reveal" data-i18n="copy.091">小刘以为，是自己选择了那条视频。</p>
+      <p class="cl-final reveal" data-i18n="copy.092">但其实，是那套以点击量为指令的系统，<br><span class="hl">替ta按下了选择。</span><br>而把选择权拿回来的第一步，<br>是在开始之前，多问自己一句：<br>这一次，我跟练的，是科学，还是流量？</p>
+      <div class="endnote reveal" data-i18n="copy.172">人物说明：文中「小刘」为综合多个真实跟练案例的<b style="color:var(--ink-soft)">典型化人物</b>，用于串联叙事；其经历（跟练第五天肌肉拉伤等）取材于真实案例与诊断情形，姓名为化名。开篇信息流中被选中、并在叙事里致其受伤的视频，同为<b style="color:var(--ink-soft)">典型化呈现</b>，已隐去真实账号与封面，不指向任何具体视频或博主。完整方法、来源与局限见文末《方法与数据说明》。</div>
     </div>
   </section>
 
   <!-- ============ 方法与数据说明（Tier③ · 全片统一Methodology）============ -->
   <section class="block methodology">
     <div class="feature">
-      <p class="lede reveal"><span class="big">方法与数据说明</span></p>
-      <p class="prose reveal" style="font-size:16px;color:var(--ink-soft)">本文图表均来自一次对健身短视频的系统采集与编码分析。以下说明数据来源、口径与局限，便于读者复核。</p>
+      <p class="lede reveal" data-i18n="copy.093"><span class="big">方法与数据说明</span></p>
+      <p class="prose reveal" style="font-size:16px;color:var(--ink-soft)" data-i18n="copy.094">本文图表均来自一次对健身短视频的系统采集与编码分析。以下说明数据来源、口径与局限，便于读者复核。</p>
       <div class="method reveal">
-        <div class="m-row"><span class="m-k">数据采集</span><span class="m-v">2026年6月10–11日B站公开搜索快照（聚合分析生成于6月17日），去重后1,477条健身视频（B站1,171 + 抖音306），及1,310个B站弹幕文件、2,794条top评论（覆盖1,005个视频）。播放量为采集时点快照；抖音页面不含可比播放量，流量分析以B站为主、不与抖音横比。</span></div>
-        <div class="m-row"><span class="m-k">评分语料</span><span class="m-v">每条视频用于科学性评分的文本＝标题＋简介＋标签＋字幕／语音转写(ASR)。B站优先用平台字幕（覆盖约69%），无字幕者以ASR补（约18%）；抖音无字幕渠道，几乎全靠ASR（约95%）。ASR采用讯飞「极速录音转写大模型」（专业术语转写优于本地faster-whisper）。画面文字识别(OCR)本轮未启用。约13%的B站视频既无字幕也转写不出有效内容，仅按标题／标签单列、不计入主科学分，以免把「没字幕」误判为「不科学」。</span></div>
-        <div class="m-row"><span class="m-k">科学性评分</span><span class="m-v">以ACSM FITT-VP运动处方框架为骨架，结合《运动处方中国专家共识(2023)》与WHO建议（透明度参考DISCERN/PEMAT/JAMA），扩展为10维量表（每维0–2分，满分20，线性换算百分制）。由两套独立打分器合成：DeepSeek（temperature=0，逐条缓存可复跑）给科学质量分，规则引擎（确定、可复现）判硬红旗，命中时总分封顶59并清零对应项；红旗设stance门控——仅当视频推荐／承诺／鼓励／售卖危险做法时计入，辟谣／警示不封顶。中位数与维度缺失率基于1,164条可评、不跑题样本（1,477去重 → 1,319可评 → 剔155跑题）。</span></div>
-        <div class="m-row"><span class="m-k">评分信度</span><span class="m-v">全程无人工逐条评分，可信度由「规则×LLM双评一致性＋敏感性检验」支撑：全样本1,691条上两套打分器总分Pearson 0.57／Spearman 0.51、平均绝对差14.1分；动作技术、热身、进阶等可观察维度一致度高，强度／处方维度分歧较大（规则机械高估、LLM更准，故最终分取LLM）。红旗一致性低（Cohen's κ=0.05、LLM误报约44%），故「危险内容比例」只采规则引擎（显式危险话术约2.1%），LLM红旗仅作软信号；分差≥20的549条已标记复核。</span></div>
-        <div class="m-row"><span class="m-k">变量定义</span><span class="m-v">散点图互动率 =（点赞＋收藏＋评论）/ 播放量（B站口径，不含分享）；资质表与标题表的「调整后互动率」另含分享并控制粉丝数与发布天数，两套口径不可混用。中位播放量为B站快照口径。标题由DeepSeek分「中性706 / 承诺412 / 科学359」三类（正则仅作备用，未做独立人工抽检）。</span></div>
-        <div class="m-row"><span class="m-k">弹幕与评论</span><span class="m-v">正向／疼痛为B站弹幕的关键词命中次数（122,980 / 18,318），基于1,310个文件、约57.2万行弹幕；评论为另采的2,794条B站top评论，做DeepSeek六分类。两者口径不同，不合并为「约57万条弹幕与评论」。</span></div>
-        <div class="m-row"><span class="m-k">相关性</span><span class="m-v">需区分两个口径，互不矛盾：① 与互动率——B站可计算播放量的865条样本中几乎不相关（Pearson r=0.034，p=0.317，不显著），控制文本长度、视频时长、主题与作者类型后仍不显著（β的p=0.248），不能据此称「越科学越容易互动」；② 与播放量／流量——控制文本长度后呈弱正相关（Spearman +0.22），且含红旗话术视频的中位播放量是无红旗的3.7×（203,544 vs 55,751）。</span></div>
-        <div class="m-row"><span class="m-k">数据来源</span><span class="m-v">经常锻炼比例38.5%（约5.4亿）为国务院《全民健身计划（2021–2025年）》的政策目标，非已达成统计；B站规模四数引自B站《2025年B站健身跟练趋势报告》；评分框架参考ACSM。受伤部位为本项目弹幕观察，未引用医学指南。</span></div>
-        <div class="m-row"><span class="m-k">局限</span><span class="m-v">① 单次快照、属中间结论；② 科学分仅评估视频文本／话术（字幕／ASR／标题），不识别画面文字(OCR)、不评判画面动作——纯靠字卡演示而少口述要点的视频可能被低估；③ 幸存者偏差漏斗（100/64/38/21/13）为解释性示意、非实测留存；④「机构媒体」类样本极小（n=4），仅供参考；⑤ 抖音无可比播放量、文本几乎全靠ASR，跨平台流量与科学分不直接比较；⑥ 标题三分类由模型标注、未做独立人工抽检；⑦「小刘」为综合多个真实案例的典型化人物、姓名为化名，其开篇所选并致其受伤的视频亦为典型化呈现、已隐去真实账号与封面，不指向任何具体视频或博主；⑧ LLM评分已固定模型／温度／prompt并留存原始响应，但非比特级完全可复现；相关性不等于因果。</span></div>
-        <div class="m-row"><span class="m-k">合规</span><span class="m-v">仅使用公开数据；作者ID已哈希；页面数据均为聚合统计，不含评论原文、昵称或头像；未联系博主，未绕过登录／付费／风控／验证码／反爬。</span></div>
+        <div class="m-row"><span class="m-k" data-i18n="copy.160">数据采集</span><span class="m-v" data-i18n="copy.095">2026年6月10–11日B站公开搜索快照（聚合分析生成于6月17日），去重后1,477条健身视频（B站1,171 + 抖音306），及1,310个B站弹幕文件、2,794条top评论（覆盖1,005个视频）。播放量为采集时点快照；抖音页面不含可比播放量，流量分析以B站为主、不与抖音横比。</span></div>
+        <div class="m-row"><span class="m-k" data-i18n="copy.161">评分语料</span><span class="m-v" data-i18n="copy.096">每条视频用于科学性评分的文本＝标题＋简介＋标签＋字幕／语音转写(ASR)。B站优先用平台字幕（覆盖约69%），无字幕者以ASR补（约18%）；抖音无字幕渠道，几乎全靠ASR（约95%）。ASR采用讯飞「极速录音转写大模型」（专业术语转写优于本地faster-whisper）。画面文字识别(OCR)本轮未启用。约13%的B站视频既无字幕也转写不出有效内容，仅按标题／标签单列、不计入主科学分，以免把「没字幕」误判为「不科学」。</span></div>
+        <div class="m-row"><span class="m-k" data-i18n="copy.162">科学性评分</span><span class="m-v" data-i18n="copy.097">以ACSM FITT-VP运动处方框架为骨架，结合《运动处方中国专家共识(2023)》与WHO建议（透明度参考DISCERN/PEMAT/JAMA），扩展为10维量表（每维0–2分，满分20，线性换算百分制）。由两套独立打分器合成：DeepSeek（temperature=0，逐条缓存可复跑）给科学质量分，规则引擎（确定、可复现）判硬红旗，命中时总分封顶59并清零对应项；红旗设stance门控——仅当视频推荐／承诺／鼓励／售卖危险做法时计入，辟谣／警示不封顶。中位数与维度缺失率基于1,164条可评、不跑题样本（1,477去重 → 1,319可评 → 剔155跑题）。</span></div>
+        <div class="m-row"><span class="m-k" data-i18n="copy.163">评分信度</span><span class="m-v" data-i18n="copy.098">全程无人工逐条评分，可信度由「规则×LLM双评一致性＋敏感性检验」支撑：全样本1,691条上两套打分器总分Pearson 0.57／Spearman 0.51、平均绝对差14.1分；动作技术、热身、进阶等可观察维度一致度高，强度／处方维度分歧较大（规则机械高估、LLM更准，故最终分取LLM）。红旗一致性低（Cohen's κ=0.05、LLM误报约44%），故「危险内容比例」只采规则引擎（显式危险话术约2.1%），LLM红旗仅作软信号；分差≥20的549条已标记复核。</span></div>
+        <div class="m-row"><span class="m-k" data-i18n="copy.164">变量定义</span><span class="m-v" data-i18n="copy.099">散点图互动率 =（点赞＋收藏＋评论）/ 播放量（B站口径，不含分享）；资质表与标题表的「调整后互动率」另含分享并控制粉丝数与发布天数，两套口径不可混用。中位播放量为B站快照口径。标题由DeepSeek分「中性706 / 承诺412 / 科学359」三类（正则仅作备用，未做独立人工抽检）。</span></div>
+        <div class="m-row"><span class="m-k" data-i18n="copy.165">弹幕与评论</span><span class="m-v" data-i18n="copy.100">正向／疼痛为B站弹幕的关键词命中次数（122,980 / 18,318），基于1,310个文件、约57.2万行弹幕；评论为另采的2,794条B站top评论，做DeepSeek六分类。两者口径不同，不合并为「约57万条弹幕与评论」。</span></div>
+        <div class="m-row"><span class="m-k" data-i18n="copy.166">相关性</span><span class="m-v" data-i18n="copy.101">需区分两个口径，互不矛盾：① 与互动率——B站可计算播放量的865条样本中几乎不相关（Pearson r=0.034，p=0.317，不显著），控制文本长度、视频时长、主题与作者类型后仍不显著（β的p=0.248），不能据此称「越科学越容易互动」；② 与播放量／流量——控制文本长度后呈弱正相关（Spearman +0.22），且含红旗话术视频的中位播放量是无红旗的3.7×（203,544 vs 55,751）。</span></div>
+        <div class="m-row"><span class="m-k" data-i18n="copy.167">数据来源</span><span class="m-v" data-i18n="copy.102">经常锻炼比例38.5%（约5.4亿）为国务院《全民健身计划（2021–2025年）》的政策目标，非已达成统计；B站规模四数引自B站《2025年B站健身跟练趋势报告》；评分框架参考ACSM。受伤部位为本项目弹幕观察，未引用医学指南。</span></div>
+        <div class="m-row"><span class="m-k" data-i18n="copy.168">局限</span><span class="m-v" data-i18n="copy.103">① 单次快照、属中间结论；② 科学分仅评估视频文本／话术（字幕／ASR／标题），不识别画面文字(OCR)、不评判画面动作——纯靠字卡演示而少口述要点的视频可能被低估；③ 幸存者偏差漏斗（100/64/38/21/13）为解释性示意、非实测留存；④「机构媒体」类样本极小（n=4），仅供参考；⑤ 抖音无可比播放量、文本几乎全靠ASR，跨平台流量与科学分不直接比较；⑥ 标题三分类由模型标注、未做独立人工抽检；⑦「小刘」为综合多个真实案例的典型化人物、姓名为化名，其开篇所选并致其受伤的视频亦为典型化呈现、已隐去真实账号与封面，不指向任何具体视频或博主；⑧ LLM评分已固定模型／温度／prompt并留存原始响应，但非比特级完全可复现；相关性不等于因果。</span></div>
+        <div class="m-row"><span class="m-k" data-i18n="copy.169">合规</span><span class="m-v" data-i18n="copy.104">仅使用公开数据；作者ID已哈希；页面数据均为聚合统计，不含评论原文、昵称或头像；未联系博主，未绕过登录／付费／风控／验证码／反爬。</span></div>
       </div>
-      <p class="prose reveal" style="font-size:13px;color:var(--ink-soft);margin-top:14px;opacity:.85">核查与修订：2026年6月。所有数字以项目原始数据表复算为准（去重口径 is_duplicate=false，科学评分另需 scoreable=true 且非跑题）。</p>
+      <p class="prose reveal" style="font-size:13px;color:var(--ink-soft);margin-top:14px;opacity:.85" data-i18n="copy.105">核查与修订：2026年6月。所有数字以项目原始数据表复算为准（去重口径 is_duplicate=false，科学评分另需 scoreable=true 且非跑题）。</p>
     </div>
   </section>
 
@@ -639,6 +638,9 @@
 </div>
 
 <script src="data/science-engagement-scatter.js"></script>
+<script src="scripts/translations.js"></script>
+<script src="scripts/i18n.js"></script>
 <script src="scripts/main.js"></script>
+<script>ScreenCoachI18n.init();</script>
 </body>
 </html>

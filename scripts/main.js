@@ -1,3 +1,4 @@
+var i18n = window.ScreenCoachI18n;
 /* V11 正式提交版交互：手机滚动、词云与对比条、FITT、人体热力图、散点图和全局导航。 */
 /* 滚动性能：把多个 scroll 回调合并到每帧一次，避免移动端逐事件强制重排造成卡顿 */
 function rafThrottle(fn){var q=false;return function(){if(q)return;q=true;requestAnimationFrame(function(){q=false;fn();});};}
@@ -121,12 +122,14 @@ var __r=document.getElementById('ch0');
   function covCssUrl(i){return "../assets/covers/c"+(i<10?'0':'')+i+".jpg?v=4";}
   var inner=document.getElementById('vlistInner');
   var nodes=[], heroNode=null;
+  function renderFeed(){
+  inner.innerHTML=''; nodes=[]; heroNode=null; shown=-1;
   feed.forEach(function(it){
     var el=document.createElement('div');
     if(it.c){
       el.className='crow';
       var parts=it.c.split('：');
-      el.innerHTML='<span class="av"></span><span class="ct"><b>'+parts[0]+'</b>'+(parts[1]||'')+'</span>';
+      el.innerHTML='<span class="av"></span><span class="ct"><b>'+i18n.t(parts[0])+'</b>'+i18n.t(parts[1]||'')+'</span>';
     }else{
       el.className='vrow'+(it.hero?' hero':'');
       var thumb;
@@ -135,7 +138,7 @@ var __r=document.getElementById('ch0');
         var au=(it.cov!=null)?covUrl(it.cov):'';
         thumb='<div class="vthumb" style="position:relative;overflow:hidden">'+
           '<span style="position:absolute;inset:0;background:url(\''+au+'\') center/cover no-repeat;filter:blur(9px) saturate(.9);transform:scale(1.2)"></span>'+
-          '<span style="position:absolute;z-index:2;left:5px;top:5px;background:rgba(20,20,22,.6);color:#fff;font-size:10px;line-height:1;padding:2px 6px;border-radius:3px;letter-spacing:.08em">示意</span>'+
+          '<span style="position:absolute;z-index:2;left:5px;top:5px;background:rgba(20,20,22,.6);color:#fff;font-size:10px;line-height:1;padding:2px 6px;border-radius:3px;letter-spacing:.08em">' + i18n.t('示意') + '</span>'+
           '<span class="dur">'+it.dur+'</span></div>';
       }else{
         var cv=(it.cov!=null)?"--cov:url('"+covCssUrl(it.cov)+"')":'';
@@ -143,14 +146,16 @@ var __r=document.getElementById('ch0');
       }
       el.innerHTML=
         thumb+
-        '<div class="vinfo"><div class="vtitle">'+it.t+'</div>'+
-        '<div class="vup"><span class="up">⏏ '+it.up+'</span></div>'+
-        '<div class="vstat"><span>▶ '+it.play+'</span><span>💬 '+it.dm+'</span></div></div>';
+        '<div class="vinfo"><div class="vtitle">'+i18n.t(it.t)+'</div>'+
+        '<div class="vup"><span class="up">⏏ '+i18n.t(it.up)+'</span></div>'+
+        '<div class="vstat"><span>▶ '+i18n.count(it.play)+'</span><span>💬 '+i18n.count(it.dm)+'</span></div></div>';
       if(it.hero) heroNode=el;
     }
     inner.appendChild(el);
     nodes.push(el);
   });
+  }
+  renderFeed();
 
   /* ===== 第一幕：The Pudding 式 step 驱动 =====
      左侧文字 step 真正流动滚过；当前 step 由“视口中线落在哪一段”决定，
@@ -158,9 +163,10 @@ var __r=document.getElementById('ch0');
   var q=document.getElementById('q'), qText=q.firstChild, caret=document.getElementById('caret');
   var vlist=document.getElementById('vlist'), counter=document.getElementById('counter');
   var stepEls=__r.querySelectorAll('.s1-step');
-  var TYPE='减肥', shown=-1, lastActive=-1;
+  var TYPE=i18n.t('减肥'), shown=-1, lastActive=-1;
+  window.addEventListener('languagechange',function(){TYPE=i18n.t('减肥');renderFeed();counter.textContent=i18n.language==='en'?'0 results loaded':'已加载0条';onScene();});
 
-  function setQuery(str,empty){qText.nodeValue=empty?'搜索':str;q.classList.toggle('empty',!!empty);}
+  function setQuery(str,empty){qText.nodeValue=empty?i18n.t('搜索'):str;q.classList.toggle('empty',!!empty);}
   function setActive(idx){
     if(idx===lastActive)return;lastActive=idx;
     for(var i=0;i<stepEls.length;i++) stepEls[i].classList.toggle('active',i===idx);
@@ -193,7 +199,8 @@ var __r=document.getElementById('ch0');
       var n=Math.round(lp*nodes.length);
       showRows(n);
       counter.classList.add('show');
-      counter.textContent='已加载 '+Math.round(lp*(326-8)+8)+' 条';
+      var loaded=Math.round(lp*(326-8)+8);
+      counter.textContent=i18n.language==='en'?loaded+' results loaded':'已加载 '+loaded+' 条';
       vlist.classList.remove('zoom');
       var maxShift=Math.max(0,inner.scrollHeight-vlist.clientHeight);
       inner.style.transform='translateY('+(-lp*Math.min(maxShift,120))+'px)';
@@ -283,12 +290,22 @@ var __r=document.getElementById('ch1');
   /* 螺旋词云布局：字号大→小，从中心沿阿基米德螺旋找首个不重叠位置；纵向压扁→更像云朵 */
   function layoutCloud(boxEl,items,opt){
     opt=opt||{}; boxEl.innerHTML='';
+    if(i18n.language==='en'){
+      boxEl.style.height='auto';
+      items.slice().sort(function(a,b){return b.size-a.size;}).forEach(function(it){
+        var word=document.createElement('span');word.className='w'+(it.ghost?' ghost':'');
+        word.style.fontSize=(14+(it.size-17)*0.58)+'px';
+        if(it.color)word.style.color=it.color;
+        word.textContent=i18n.t(it.text);boxEl.appendChild(word);
+      });
+      return;
+    }
     var cw=boxEl.clientWidth||700, H=opt.height||400, pad=(opt.pad!=null?opt.pad:6);
     boxEl.style.height=H+'px';
     var cx=cw/2, cy=H/2, placed=[];
     items.slice().sort(function(a,b){return b.size-a.size;}).forEach(function(it,idx){
       var s=document.createElement('span'); s.className='w'+(it.ghost?' ghost':'');
-      s.style.fontSize=it.size+'px';
+      s.style.fontSize=(it.size*(cw<350?.88:1))+'px';
       if(it.color) s.style.color=it.color;
       if(it.vertical) s.style.writingMode='vertical-rl';
       s.style.transitionDelay=(idx*0.035).toFixed(2)+'s';
@@ -301,6 +318,12 @@ var __r=document.getElementById('ch1');
         var rc={l:x-bw/2-pad,t:y-bh/2-pad,r:x+bw/2+pad,b:y+bh/2+pad};
         if(rc.l>=0&&rc.t>=0&&rc.r<=cw&&rc.b<=H&&!cloudHit(rc,placed))break;
         t+=0.16;
+      }
+      // If a dense cloud cannot fit, add a centered row instead of placing a word off-canvas.
+      if(k===4800){
+        if(bw>cw-pad*2){s.style.fontSize=(parseFloat(s.style.fontSize)*(cw-pad*2)/bw)+'px';bw=s.offsetWidth;bh=s.offsetHeight;}
+        x=cw/2;y=placed.reduce(function(bottom,b){return Math.max(bottom,b.b);},0)+pad+bh/2;
+        H=Math.max(H,y+bh/2+pad);boxEl.style.height=H+'px';
       }
       s.style.left=Math.round(x-bw/2)+'px';
       s.style.top=Math.round(y-bh/2)+'px';
@@ -330,6 +353,7 @@ var __r=document.getElementById('ch1');
     layoutCloud(cAllEl,cloudItems(),{height:(cw<520?500:440)});
   }
   relayoutClouds(true);
+  window.addEventListener('languagechange',function(){relayoutClouds(true);});
   /* 字体异步加载完 / 窗口缩放后重排（布局确定性，不会抖动）*/
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){relayoutClouds(true);});
   window.addEventListener('load',function(){relayoutClouds(true);});
@@ -375,6 +399,7 @@ var __r=document.getElementById('ch2');
     var c=document.createElement('div'); c.className='fcard';
     c.style.transitionDelay=(i*0.06).toFixed(2)+'s';
     c.innerHTML='<div class="w"><span class="cap">'+f[0]+'</span><span class="rest">'+f[1].slice(1)+'</span><span class="zh">'+f[2]+'</span></div>';
+    i18n.text(c.querySelector('.zh'),f[2]);
     grid.appendChild(c);
   });
   fittWrap.appendChild(grid);
@@ -499,7 +524,7 @@ var __r=document.getElementById('ch2');
     svg.setAttribute('preserveAspectRatio','xMidYMid meet');
     function el(n){return document.createElementNS(NS,n);}
     function line(a,b,c,d,cls){var l=el('line');l.setAttribute('x1',a);l.setAttribute('y1',b);l.setAttribute('x2',c);l.setAttribute('y2',d);l.setAttribute('class',cls);return l;}
-    function txt(x,y,s,cls,anchor){var e=el('text');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('class',cls);if(anchor)e.setAttribute('text-anchor',anchor);e.textContent=s;return e;}
+    function txt(x,y,s,cls,anchor){var e=el('text');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('class',cls);if(anchor)e.setAttribute('text-anchor',anchor);i18n.text(e,s);return e;}
     svg.appendChild(line(x0,y0,x1,y0,'ax'));
     svg.appendChild(line(x0,y1,x0,y0,'ax'));
     svg.appendChild(txt((x0+x1)/2,VH-10,'科学评分 →','axtitle','middle'));
@@ -519,7 +544,7 @@ var __r=document.getElementById('ch2');
       c.setAttribute('cx',px(d.s).toFixed(1)); c.setAttribute('cy',py(d.e).toFixed(1));
       c.setAttribute('r','2.6'); c.setAttribute('class','dot');
       var ti=document.createElementNS(NS,'title');
-      ti.textContent='科学分 '+Math.round(d.s)+' ｜ 互动率 '+(d.e*100).toFixed(1)+'%'+(d.t?' ｜ '+d.t:'');
+      ti.textContent=i18n.pointTitle(d);
       c.appendChild(ti); dotwrap.appendChild(c);
     });
     svg.appendChild(dotwrap);
@@ -537,7 +562,7 @@ var __r=document.getElementById('ch2');
     var W=680,H=384, mL=58,mR=52,mT=46,mB=72;
     var x0=mL, x1=W-mR, y0=H-mB, y1=mT;
     function e3(n){return document.createElementNS(N3,n);}
-    function t3(x,y,s,cls,anc){var e=e3('text');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('class',cls);if(anc)e.setAttribute('text-anchor',anc);e.textContent=s;return e;}
+    function t3(x,y,s,cls,anc){var e=e3('text');e.setAttribute('x',x);e.setAttribute('y',y);e.setAttribute('class',cls);if(anc)e.setAttribute('text-anchor',anc);i18n.text(e,s);return e;}
     function ln3(a,b,c,d,cls){var l=e3('line');l.setAttribute('x1',a);l.setAttribute('y1',b);l.setAttribute('x2',c);l.setAttribute('y2',d);l.setAttribute('class',cls);return l;}
     var g=e3('svg'); g.setAttribute('viewBox','0 0 '+W+' '+H); g.setAttribute('preserveAspectRatio','xMidYMid meet');
     // 真实聚合(analysis_dashboard a2)：健身达人中位播放最高(≈68万)、科学分偏低；医疗康复科学分最高(34.1)、中位播放最低(≈1.2万)
@@ -547,7 +572,7 @@ var __r=document.getElementById('ch2');
     function sY(v){return y0-(v/SMAX)*(y0-y1);}
     [0,100000,200000,300000,400000,500000,600000,700000].forEach(function(v){
       var y=pY(v); if(v>0) g.appendChild(ln3(x0,y,x1,y,'cgrid'));
-      g.appendChild(t3(x0-8,y+4,(v/10000)+'万','catick','end'));
+      var tick=t3(x0-8,y+4,(v/10000)+'万','catick','end');tick.dataset.value=v;g.appendChild(tick);
     });
     [0,10,20,30,40].forEach(function(v){ g.appendChild(t3(x1+8,sY(v)+4,String(v),'satick','start')); });
     g.appendChild(ln3(x0,y0,x1,y0,'caxis'));
@@ -595,13 +620,14 @@ var __r=document.getElementById('ch2');
       gp.style.width=(full>0?(y/full*100):0)+'%';
       var center=y+H*0.45, act=0;
       for(var i=0;i<offs.length;i++){ if(offs[i]<=center) act=i; }
-      if(act!==cur){cur=act;railNow.innerHTML='<b>'+SEGS[act].n+'</b>'+SEGS[act].name+'<span class="nav-desc">'+SEGS[act].desc+'</span>';
-        [].forEach.call(pager.querySelectorAll('button'),function(b,j){b.classList.toggle('active',j===act);});}
+      if(act!==cur){cur=act;railNow.innerHTML='<b>'+SEGS[act].n+'</b>'+i18n.t(SEGS[act].name)+'<span class="nav-desc">'+i18n.t(SEGS[act].desc)+'</span>';
+        [].forEach.call(pager.querySelectorAll('[data-seg]'),function(b,j){b.classList.toggle('active',j===act);b.setAttribute('aria-current',j===act?'step':'false');b.setAttribute('aria-label',(SEGS[j].n?SEGS[j].n+' · ':'')+i18n.t(SEGS[j].name));});}
     });
   }
-  pager.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var nd=document.getElementById(b.dataset.seg);if(nd)window.scrollTo({top:Math.max(0,nd.offsetTop-36),behavior:'smooth'});});
+  pager.addEventListener('click',function(e){var b=e.target.closest('[data-seg]');if(!b)return;var nd=document.getElementById(b.dataset.seg);if(nd)window.scrollTo({top:Math.max(0,nd.offsetTop-pager.offsetHeight),behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});});
   window.addEventListener('scroll',onScroll,{passive:true});
   window.addEventListener('resize',function(){measure();onScroll();});
   window.addEventListener('load',measure);
+  window.addEventListener('languagechange',function(){cur=-1;measure();onScroll();});
   measure();onScroll();
 })();
